@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}test{% endblock %}
+
+{% block content %}
+
+<h1>test</h1>
+
+{% for s in stages %}
+    <p>{{ s.student }} {{ s.score }}</p>
+{% endfor %}
+
+{% endblock %}

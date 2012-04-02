@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/diplom/!svn/ver/2/customuseradmin
+END
+tests.py
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/diplom/!svn/ver/2/customuseradmin/tests.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/diplom/!svn/ver/2/customuseradmin/__init__.py
+END
+admin.py
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/diplom/!svn/ver/2/customuseradmin/admin.py
+END
+views.py
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/diplom/!svn/ver/2/customuseradmin/views.py
+END
+models.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/diplom/!svn/ver/2/customuseradmin/models.py
+END

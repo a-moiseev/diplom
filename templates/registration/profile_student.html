@@ -1,0 +1,29 @@
+{% if prof.theme %}
+    {# если студент и есть тема #}
+    <p>Тема: <a href="/theme/{{prof.theme.id}}/">{{prof.theme}}</a></p>
+    <p>Руководитель: <a href="/accounts/profile/{{prof.theme.teacher.user.id}}/">{{prof.theme.teacher}}</a></p>
+{% endif %}
+
+{% if prof.interest_set.count %}
+{# если учитель и есть интересы #}
+<h2>Области интересов</h2>
+    <ul>
+    {% for int in prof.interest_set.all %}
+        <li>{{ int }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+ 
+{% if prof.theme_set.count %}
+{# если учитель и есть темы #}
+<h2>Темы</h2>
+    <ul>
+    {% for theme in prof.theme_set.all %}
+        {% if not theme.student_set.count %}
+        {# только свободные темы #}
+        <li><a href="/theme/{{ theme.id }}/">{{ theme.name }}</a></td></li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+{% endif %}

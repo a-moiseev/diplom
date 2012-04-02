@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Профайл{% endblock %}
+
+{% block content %}
+<h1>Профайл</h1>
+<p><strong>Логин:</strong> {{ user.username }}</br>
+<strong>e-mail:</strong> {{ user.email }}</br>
+</p>
+<p><a href="/accounts/password/change/">Изменить пароль</a></p>
+
+<h3>Пожалуйста, введите недостающие данные</h3>
+<form method="post">
+<dl class="register">
+{% for field in form %}
+    <dt>{{ field.label_tag }}{% csrf_token %}</dt>
+    <dd class="clearfix">{{ field }}
+    {% if field.help_text %}<div class="clearfix">{{ field.help_text }}</div>{% endif %}
+    {% if field.errors %}<div class="myerrors clearfix">{{ field.errors }}</div>{% endif %}
+    </dd>
+{% endfor %}
+</dl>
+<input type="submit" value="Сохранить" / class="clearfix">
+</form>
+{% endblock %}

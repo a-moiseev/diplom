@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}Профайл: {{ prof }}{% endblock %}
+
+{% block content %}
+    <h1>{{ prof }}</h1>
+
+    {% if prof.theme %}
+        {# если студент и есть тема #}
+        <p>Тема: <a href="/theme/{{prof.theme.id}}/">{{prof.theme}}</a></p>
+        <p>Руководитель: <a href="/accounts/profile/{{prof.theme.teacher.user.id}}/">{{prof.theme.teacher}}</a></p>
+    {% endif %}
+
+    {% if prof.interest_set.count %}
+        {# если есть интересы #}
+        <h2>Области интересов</h2>
+        <ul>
+            {% for int in prof.interest_set.all %}
+                <li>{{ int }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% if user == prof.user and user.teacher %}
+        <p align="right"><a href='{{ site }}/interest/add/'>Добавить область интересов</a></p>
+    {% endif %}
+
+    {% if prof.theme_set.count %}
+        {# если есть темы #}
+        {% if user.teacher %}
+            <h2>Темы</h2>
+            <table>
+                <tr>
+                    <th width="100%">Название темы</th>
+                    <th>Дипломник</th>
+                </tr>
+                {% for theme in prof.theme_set.all %}
+                    <tr>
+                        <td><a href="/theme/{{ theme.id }}/">{{ theme.name }}</a></td>
+                        <td>
+                            {% if theme.student_set.count %}
+                                {% with stu=theme.student_set.all|first %}
+                                    <nobr><a href="/accounts/profile/{{ stu.user.id }}/">{{ stu }}</a></nobr>
+                                {% endwith %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+
+        {% if user.student %}
+            <h2>Темы</h2>
+            <ul>
+                {% for theme in prof.theme_set.all %}
+                    {% if not theme.student_set.count %}
+                        {# только свободные темы #}
+                        <li><a href="/theme/{{ theme.id }}/">{{ theme.name }}</a></td></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endif %}
+    {% if user == prof.user and user.teacher %}
+        <p align="right"><a href='{{ site }}/theme/add/'>Добавить тему</a></p>
+    {% endif %}
+
+{% endblock %}

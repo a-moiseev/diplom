@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Расписание{% endblock %}
+
+{% block content %}
+
+        {% load event_tags %}
+        
+        <h1>Расписание</h1>
+        
+        <table style="border-style:none">
+                <tr>
+                <td align="left" style="border-style:none"  width="33%">
+                        <a href="/schedule/{{year}}/{{ month|add:"-1" }}">Предыдущий месяц</a>
+                </td>
+                <td align="center" style="border-style:none" width="34%">
+                        <a href="/schedule/">Текущий месяц</a>
+                </td>
+                <td align="right" style="border-style:none"  width="33%">
+                        <a href="/schedule/{{year}}/{{ month|add:"1" }}/">Следующий месяц</a>
+                </td>
+                </tr>
+        </table>
+
+        <div id="calendar">
+            {% event_calendar year month event_list %}
+        </div>
+        
+        <table style="border-style:none">
+                <tr>
+                <td align="left" style="border-style:none"  width="33%">
+                        <a href="/schedule/{{year}}/{{ month|add:"-1" }}">Предыдущий месяц</a>
+                </td>
+                <td align="center" style="border-style:none" width="34%">
+                        <a href="/schedule/">Текущий месяц</a>
+                </td>
+                <td align="right" style="border-style:none"  width="33%">
+                        <a href="/schedule/{{year}}/{{ month|add:"1" }}/">Следующий месяц</a>
+                </td>
+                </tr>
+        </table>
+
+{% endblock %}
+
+
+{% block sidebar %}
+        {% if user.teacher %}
+                <p><a href='/event/add/'>Добавить встречу</a></p>
+        {% endif %}
+{% endblock %}

@@ -1,0 +1,140 @@
+html,body{margin:0;padding:0}
+body{font: 85%/1.3 TrebuchetMS, Arial, sans-serif;
+    text-align: justify; background: #fff; padding-bottom:20px}
+a {color: #0066B3; background: inherit; text-decoration: none;}
+h1 {font: bold 190% Arial, Arial, Sans-Serif; text-align: left; color: #036DA7}
+h2 {font: bold 120% Arial, Arial, Sans-Serif; text-align: left; margin: 10px 0 5px 0;}
+table {
+	width: 100%;
+	border-width: 1px;
+	border-spacing: 0;
+	border-style: outset;
+}
+
+th,td {
+	border-width: 1px;
+	padding: 3px;
+	border-style: inset;
+}
+
+th {
+	text-align: center
+}
+
+#container {
+	width: 900px;
+	margin: 0 auto;
+}
+
+#header {
+	background: #BBD9EE;
+	padding: 5px 20px 25px;
+}
+
+#header h1 { margin: 0; color: #fff; padding-bottom: 15px; }
+#header a { margin: 0; color: #665; }
+
+#menu {
+	width:900px;
+	margin:0 auto;
+}
+
+ul#nav,ul#nav li{list-style-type:none;margin:0 20px;padding:0}
+ul#nav{float:right;font-size: 90%}
+ul#nav li{float:left;margin-left: 3px;text-align: center}
+ul#nav a{float:left;width: 95px;padding: 5px 0;background: #E7F1F8;text-decoration:none;color: #665; border-top : 1px solid #fff; border-left : 1px solid #fff; border-right : 1px solid #fff;}
+ul#nav a:hover{background: #fff;color: #000}
+ul#nav li.activelink a,ul#nav li.activelink a:hover{background: #FFF;color: #003}
+
+#content-container
+{
+	float: left;
+	width: 900px;
+	margin: 15px 0px 0 0;
+}
+
+#content {
+	clear: left;
+	float: left;
+	width: 650px;
+	display: inline;
+	background: #eee;
+	text-align: justify;
+	padding: 10px 20px;
+}
+
+#content ul {
+	margin: 0;
+}
+
+#content0 {
+	clear: left;
+	float: left;
+	width: 860px;
+	display: inline;
+	background: #eee;
+	text-align: justify;
+	padding: 10px 20px;
+}
+
+#aside
+{
+	float: right;
+	width: 160px;
+	font-size: 90%;
+	display: inline;
+	background: #FFF6BF;
+	padding: 10px 20px;
+}
+
+#aside h3 { margin: 0; }
+#aside li { list-style-type:none; margin: 0; }
+
+#calendar table {
+	width: 100%;
+	border-width: 1px;
+	border-spacing: 0;
+	border-style: outset;
+}
+
+#calendar th {
+	width: 14%;
+	text-align: center;
+	vertical-align:text-top;
+	border-width: 1px;
+	padding: 3px;
+	border-style: inset;
+}
+
+#calendar td {
+	width: 14%;
+	text-align: center;
+	vertical-align:text-top;
+	border-width: 1px;
+	padding: 3px;
+	border-style: inset;
+}
+
+#calendar ul {
+	padding: 0;
+	margin: 0;
+}
+
+#calendar li {
+	text-align: left;
+	list-style: none;
+	padding: 0px;	
+}
+
+.specmsg {
+	color: #FF3300;
+}
+
+.error {
+	color: #FF3300;
+}
+
+.subnavilist {
+	padding: 0;
+	margin: 0;
+}

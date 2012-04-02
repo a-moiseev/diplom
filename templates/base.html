@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<html>
+
+<head>
+    <title>{% block title %}{% endblock %}</title>
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}newstyle.css" media="screen" />
+	{% block extra_head %}{% endblock %}
+</head>
+
+<body>
+
+<div id="container">
+
+<div id="header">
+	<p align="right">
+	{% if user.is_authenticated %}
+		{{ user.username }} |
+		<strong>{{ user.get_full_name }}</strong> | 
+		<a href="/accounts/profile/">Профайл</a> | 
+		<a href="/accounts/logout/">Выход</a>
+	{% else %}
+		<a href="/accounts/register/">Регистрация</a> | 
+		<a href="/accounts/login/">Вход</a>
+	{% endif %}</p>
+	
+	<h1>Портал Управления Дипломными Проектами</h1>
+	
+	<div id="menu">
+		<ul id="nav">
+		<li><a href="/">Главная</a></li>
+		{% if user.is_authenticated %}
+			{% if user.student %}
+				{% if user.student.diplomnik %}
+                    <li><a href="/docs/">Документация</a></li>
+				{% else %}
+					<li><a href="/teachers/">Выбор темы</a></li>
+				{% endif %}
+			{% endif %}
+            {% if user.teacher %}
+                <li><a href="/diplomniks/">Дипломники</a></li>
+            {% endif %}
+			<li><a href="/schedule/">Расписание</a></li>
+            <li><a href="/chat/rooms/">Чат</a></li>
+			<li><a href="/messages/">Сообщения</a></li>
+		{% endif %}
+		</ul>
+	</div>
+</div>
+
+<div id="content-container">
+
+	<div id="content">
+		{% block content %}
+		{% endblock %}
+	</div>
+
+	<div id="aside">
+		{% block sidebar %}
+		{% endblock %}
+	</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Текущие дипломники{% endblock %}
+
+{% block content %}
+
+<h1>Текущие дипломники</h1>
+    {% if diplomniks %}
+        <table>
+        <tr>
+            <th>Дипломник</th>
+            <th>Тема</th>
+        </tr>
+        {% for d in diplomniks %}
+            <tr>
+                <td><a href="/accounts/profile/{{ d.user.id }}/">{{ d }}</a></td>
+                <td><a href="/theme/{{ d.theme.id }}/">{{ d.theme }}</a></td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% else %}
+        <p>У Вас пока нет дипломников.</p>
+    {% endif %}
+
+{% endblock %}

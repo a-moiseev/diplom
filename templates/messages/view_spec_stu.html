@@ -1,0 +1,21 @@
+{% extends "messages/base.html" %} 
+{% load i18n %} 
+{% block content %}
+<h1>{% trans "View Message" %}</h1>
+<dl class="message-headers">
+    <dt>{% trans "Subject" %}:</dt>
+    <dd><strong>{{ message.subject }}</strong></dd>
+    <dt>{% trans "Sender" %}:</dt>
+    <dd>{{ message.sender }}</dd>
+    <dt>{% trans "Date" %}:</dt>
+    <dd>{{ message.sent_at|date:_("DATETIME_FORMAT")}}</dd>
+    <dt>{% trans "Recipient" %}:</dt>
+    <dd>{{ message.recipient }}</dd>
+</dl>
+<p>Вам предложено работать над темой <a href="/theme/{{ theme.id }}/">{{theme}}</a>.</p>
+<dt>Текст сообщения:</dt>
+<dd>{{ message.body|linebreaksbr }}</dd>
+
+<p><a href="/messages/choose/{{message.id}}/spec/">Принять</a>
+<a href="{% url messages_delete message.id %}spec/">Отклонить</a></p>
+{% endblock %}

@@ -1,0 +1,39 @@
+
+{% if prof.interest_set.count %}
+{# если есть интересы #}
+    <h2>Области интересов</h2>
+    <ul>
+    {% for int in prof.interest_set.all %}
+        <li>{{ int }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% if user == prof.user %}
+    <p align="right"><a href='{{ site }}/interest/add/'>Добавить область интересов</a></p>
+{% endif %}
+
+{% if prof.theme_set.count %}
+{# если есть темы #}
+    <h2>Темы</h2>
+    <table>
+        <tr>
+            <th width="100%">Название темы</th>
+            <th>Дипломник</th>
+        </tr>
+    {% for theme in prof.theme_set.all %}
+        <tr>
+            <td><a href="/theme/{{ theme.id }}/">{{ theme.name }}</a></td>
+            <td>
+                {% if theme.student_set.count %}
+                    {% with stu=theme.student_set.all|first %}
+                        <nobr><a href="/accounts/profile/{{ stu.user.id }}/">{{ stu }}</a></nobr>
+                    {% endwith %}
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endif %}
+{% if user == prof.user %}
+    <p align="right"><a href='{{ site }}/theme/add/'>Добавить тему</a></p>
+{% endif %}

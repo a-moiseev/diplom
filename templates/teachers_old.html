@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Выбор тем и интересов{% endblock %}
+
+{% block content %}
+
+<h1>Выбор тем и интересов</h1>
+
+{% for t in teachers %}
+    <p><a href="/accounts/profile/{{ t.user.id }}/">{{ t }}</a></p>
+    {% if t.interest_set.count %}
+    <h3>Области интересов</h3>
+        {% for i in t.interest_set.all %}
+            <p>{{ i }}</p>
+        {% endfor %}
+    {% endif %}
+    {% if t.theme_set.count %}
+    <h3>Предлагаемые темы дипломных работ</h3>
+        {% for i in t.theme_set.all %}
+            <p>{{ i }}</p>
+        {% endfor %}
+    {% endif %}
+{% endfor %}
+
+{% endblock %}

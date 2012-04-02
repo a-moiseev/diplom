@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Тема{% endblock %}
+
+{% block content %}
+    <h1>{{ theme.name }}</h1>
+    <p><strong>Руководитель:</strong> <a href="/accounts/profile/{{theme.teacher.user.id}}/">{{ theme.teacher }}</a></p>
+    {% if theme.student_set.count %}    
+        <p><strong>Дипломник:</strong> {{ theme.student_set.all|first }}</p>
+    {% endif %}    
+    {% if theme.comments %}
+        <p><strong>Комментарии:</strong><br/>
+        {{ theme.comments|linebreaks }}</p>
+    {% endif %}
+    
+    {% ifequal user.pk theme.teacher.user.pk %}
+        <a href="/theme/{{theme.id}}/edit/">Редактировать</a>
+    {% endifequal %}
+    
+{% endblock %}

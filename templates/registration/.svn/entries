@@ -1,0 +1,35 @@
+10
+
+dir
+0
+http://localhost/svn/diplom/templates/registration
+http://localhost/svn/diplom
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+c8a42855-084b-404b-a369-65ee96b2b38e
+
+activation_email.txt
+file
+
+
+
+add
+

@@ -1,0 +1,4 @@
+
+cd ~/djcode/diplom/
+rm dump.json
+python manage.py dumpdata --format json --indent 2 > dump.json

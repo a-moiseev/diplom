@@ -1,0 +1,42 @@
+{% extends "messages/base.html" %} 
+{% load i18n %} 
+{% block content %}
+<h1>{% trans "View Message" %}</h1>
+<dl class="message-headers">
+    <dt>{% trans "Subject" %}:</dt>
+    <dd><strong>{{ message.subject }}</strong></dd>
+    <dt>{% trans "Sender" %}:</dt>
+    <dd>{{ message.sender }}</dd>
+    <dt>{% trans "Date" %}:</dt>
+    <dd>{{ message.sent_at|date:_("DATETIME_FORMAT")}}</dd>
+    <dt>{% trans "Recipient" %}:</dt>
+    <dd>{{ message.recipient }}</dd>
+</dl>
+
+{% if special %}
+    {% if special.interests %}
+        <p>Интересы:</p>
+        <ul>
+        {% for i in special.interests.all %}
+            <li>{{i}}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% if special.themes %}
+        <p>Темы:</p>
+        <ul>
+        {% for t in special.themes.all %}
+            <li>{{t}}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endif %}
+<br />
+<dt>Текст сообщения:</dt>
+<dd>{{ message.body|linebreaksbr }}<br /></dd>
+
+{% ifequal message.recipient.pk user.pk %}
+<a href="{% url messages_reply message.id %}spec/">{% trans "Reply" %}</a>
+{% endifequal %}
+<a href="{% url messages_delete message.id %}">{% trans "Delete" %}</a>
+{% endblock %}

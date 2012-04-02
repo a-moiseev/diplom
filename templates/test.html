@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}test{% endblock %}
+
+{% block content %}
+
+<h1>test</h1>
+
+{% if score_forms %}
+<form method="post">
+<table>
+    {% for stage, form in score_forms %}
+        <tr>
+            <td>{{ stage.date }}</td>
+            <td><a href="/accounts/profile/{{ stage.student.user.id }}/">{{ stage.student }}</a></td>
+            <td>{{ stage.name }}</td>
+            <td>
+                {% for field in form %}
+                    {% csrf_token %}
+                    {{ field }}
+                    {% if field.help_text %}<div class="clearfix">{{ field.help_text }}</div>{% endif %}
+                    {% if field.errors %}<div class="error">{{ field.errors }}</div>{% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+<input type="submit" value="Сохранить">
+</form>
+{% else %}
+    <p>Не кому ставить оценки.</p>
+{% endif %}
+
+{% endblock %}

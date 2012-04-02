@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Выбор тем и интересов{% endblock %}
+
+{% block content %}
+
+<h1>Выбор тем и интересов</h1>
+
+{% for teacher in teacher_forms %}
+    <h2><a href="/accounts/profile/{{ teacher.teacher.user.id }}/">{{ teacher.teacher }}</a></h2>
+    <form action="/teachers/request/{{ teacher.teacher.user.id }}/" method="post">{% csrf_token %}
+    {% if teacher.form %}
+        <table>
+        <tr><th colspan="2">Области интересов</th><tr>
+        {% for field in teacher.form %}
+            {% if not field.help_text %}
+                <tr>
+                    <td width="100%">{{ field.label_tag }}</td>
+                    <td>{{ field }}</td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        <tr><th colspan="2">Темы</th><tr>
+        {% for field in teacher.form %}
+            {% if field.help_text %}
+                <tr>
+                    <td width="100%">{{ field.label_tag }}  <a href="/theme/{{field.help_text}}/">&gt;&gt;&gt;</a></td>
+                    <td>{{ field }}</td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        </table>
+        <input type="submit" value="Послать запрос" / class="clearfix">
+    {% endif %}
+    </form>
+{% endfor %}
+
+
+{% endblock %}

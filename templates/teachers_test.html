@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% load pymorphy_tags %}
+
+{% block title %}Запрос{% endblock %}
+
+{% block content %}
+
+<h1>Запрос</h1>
+
+<p>Ваши желаемые темы выполнения дипломной работы:</p>
+{% if interests_req %}
+    <p>Области интересов</p>
+    <ul>
+    {% for i in interests_req %}
+        <li>{{i}}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% if themes_req %}
+    <p>Темы</p>
+    <ul>
+    {% for t in themes_req %}
+        <li>{{t}} <a href="/theme/{{t.id}}/">&gt;&gt;&gt;</a></li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+<form action="/teachers/request/{{ teacher.user.id }}/send/" method="post">{% csrf_token %}
+<p align="left">{{ form2.label_tag }}
+{% if field.errors %}<div class="myerrors clearfix">{{ form2.errors }}</div>{% endif %}</br>{{ form2 }}</p>
+<p>Отправить запрос <a href="/accounts/profile/{{ teacher.user.id }}/">{{ teacher }}</a>?</br></p>
+<input type="submit" value="ОК" / class="clearfix">
+</form>
+
+{% endblock %}
