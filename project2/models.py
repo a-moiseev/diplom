@@ -19,8 +19,16 @@ def make_upload_path(instance, filename):
     return u"uploads/%s/%s" % (user.id, filename)
 """
 
+class GitHubAccount(models.Model):
+    username = models.CharField(max_length=30, blank=True, verbose_name="Логин")
+    password = models.CharField(max_length=30, blank=True, verbose_name="Пароль")
+
+    def __unicode__(self):
+        return self.username
+
 class Teacher(models.Model):
     user = models.OneToOneField(User)
+    github = models.OneToOneField(GitHubAccount, null=True)
 
     middle_name = models.CharField(max_length=30, blank=True)
     position = models.CharField(max_length=30, blank=True)
@@ -76,6 +84,7 @@ class Student(models.Model):
     # профайл студента
     # diplomnik = true - студент с темой и преподавателем
     user = models.OneToOneField(User)
+    github = models.OneToOneField(GitHubAccount, null=True)
     
     birthday = models.DateField()
     phone = models.CharField(max_length=20, blank=True)

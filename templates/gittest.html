@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}GitHub{% endblock %}
+
+{% block content %}
+
+<h1>GitHub</h1>
+
+    <p>{{ git_login }}</p>
+    <p><a href="{{ git_url }}">{{ git_url }}</a></p>
+
+    <h2>Repos</h2>
+    <ul>
+    {% for gr in git_repos %}
+        <li><a href="{{ gr.html_url }}">{{ gr.name }}</a></li>
+    {% endfor %}
+    </ul>
+    
+
+{% endblock %}

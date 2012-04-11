@@ -58,6 +58,8 @@ urlpatterns = patterns('',
     url(r'^diplomniks/$', 'diplom.project2.views.diplomniks'),
 
     url(r'^scores/$', 'diplom.project2.views.set_scores'),
+
+    url(r'^git/$', 'diplom.project2.views.git'),
 )
 
 urlpatterns += staticfiles_urlpatterns()

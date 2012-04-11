@@ -18,6 +18,8 @@ from project2.forms import *
 import webodt
 from webodt import shortcuts
 
+from pygithub3 import Github
+
 from settings import TIME_FOR_ST, DECANAT_EMAIL
 
 
@@ -843,5 +845,28 @@ def set_scores(request):
 
     return render_to_response('test.html', {
         'score_forms':score_forms,
+        },
+        context_instance=RequestContext(request))
+
+@login_required
+def git(request):
+    user = request.user
+    prof = get_us_profile(user)
+
+    try:
+        if not prof.github.id:
+            raise Http404
+    except:
+        raise Http404
+
+    gh=Github(login=prof.github.username, password=prof.github.password)
+    gh_user = gh.users.get()
+    gh_repos = gh.repos.list().all()
+
+    return render_to_response('gittest.html', {
+        #'git_user':gh.users.get(),
+        'git_login':gh_user.login,
+        'git_url':gh_user.html_url,
+        'git_repos':gh_repos,
         },
         context_instance=RequestContext(request))
