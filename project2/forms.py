@@ -4,11 +4,11 @@ from django import forms
 from django.forms.extras.widgets import SelectDateWidget
 from django.forms import ModelForm
 
-from diplom.project2.models import Theme, Interest, Event, EventStudent, TypeOfWork
+from diplom.project2.models import Theme, Interest, Event, EventStudent, TypeOfWork, Specialization, Stage, GitHubAccount
 
 import datetime
-from project2.models import Specialization, Stage
 
+from pygithub3 import Github
 
 def birthyears():
     now = (datetime.datetime.now()).year
@@ -39,22 +39,6 @@ class StudentProfileForm(forms.Form):
     }
     semestr = forms.ChoiceField(choices = SEMESTR_CHOICES, label=u'Семестр')
     specialization = forms.ModelChoiceField(queryset = Specialization.objects.all(), label=u'Специализация (направление)')
-
-    """
-    MONTH_CHOICES = (
-        (u'январь', u'январь'),
-        (u'июнь', u'июнь'),
-        )
-
-    month = forms.ChoiceField(choices=MONTH_CHOICES, label=u'Месяц защиты')
-
-    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    YEAR_CHOICES = (
-        (2012, '2012'),
-        (2013, '2013'),
-        )
-    year = forms.ChoiceField(choices = YEAR_CHOICES, label=u'Год защиты')
-    """
 
     phone = forms.RegexField(regex=r'[\d\(\)\-\+]', widget=forms.TextInput, required=False, max_length=20, label=u'Телефон')
 
@@ -137,3 +121,14 @@ class ScoreForm(ModelForm):
         #exclude = ('event', 'number')
         fields = ('score',)
         widjets = {'score': forms.Select()}
+
+
+class GitHubAccountForm(ModelForm):
+    class Meta:
+        model = GitHubAccount
+        fields = ('username','password',)
+
+class GitHubPasswordForm(ModelForm):
+    class Meta:
+        model = GitHubAccount
+        fields = ('password',)

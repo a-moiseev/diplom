@@ -45,7 +45,7 @@ class Secretary(models.Model):
     def __unicode__(self):
         return self.user.get_full_name()
 """
-    
+
 class Theme(models.Model):
     teacher = models.ForeignKey(Teacher)
     name = models.CharField(max_length=100, unique=True, verbose_name=u'Название')

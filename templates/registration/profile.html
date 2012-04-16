@@ -54,7 +54,7 @@
                 {% for theme in prof.theme_set.all %}
                     {% if not theme.student_set.count %}
                         {# только свободные темы #}
-                        <li><a href="/theme/{{ theme.id }}/">{{ theme.name }}</a></td></li>
+                        <li><a href="/theme/{{ theme.id }}/">{{ theme.name }}</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>

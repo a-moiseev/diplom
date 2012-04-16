@@ -56,6 +56,18 @@
 	</div>
 
 	<div id="aside">
+        {% if user.student %}
+            {% if not user.student.github.id %}
+                <p><a href="https://github.com/signup/free">!!!!!!!!!</a></p>
+            {% endif %}
+        {% endif %}
+        {% if user.teacher %}
+            {% if not user.teacher.github.id %}
+                <p><a href="https://github.com/signup/free">!!!!!!!!!</a></p>
+            {% endif %}
+        {% endif %}
+
+
 		{% block sidebar %}
 		{% endblock %}
 	</div>

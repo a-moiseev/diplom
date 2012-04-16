@@ -22,7 +22,6 @@ from pygithub3 import Github
 
 from settings import TIME_FOR_ST, DECANAT_EMAIL
 
-
 def get_us_profile(us):
 # принимает объект user, возвращает teacher, student или None
     try:
@@ -42,6 +41,26 @@ def user_student(us):
         return Student.objects.get(user = us)
     except:
         return None
+
+def get_gh_login(us):
+    prof = get_us_profile(us)
+    try:
+        if not prof.github.id:
+            return None
+    except:
+        return None
+
+    if prof.github.username:
+        login_name = prof.github.username
+    else:
+        login_name = us.email
+
+    gh=Github(login=login_name, password=prof.github.password)
+    try:
+        gh.users.get()
+    except:
+        return None
+    return gh
 
 def main(request):
     return HttpResponseRedirect(reverse('diplom.project2.views.get_profile'))
@@ -726,7 +745,7 @@ def docs(request):
         context_instance=RequestContext(request))
 
 @login_required
-def zadanie(request):
+def docs_zadanie(request):
     # для студента
     template = webodt.ODFTemplate('zadanie_na_vipusknuyu_rabotu.odt')
 
@@ -751,7 +770,7 @@ def zadanie(request):
     return shortcuts.render_to_response('zadanie_na_vipusknuyu_rabotu.odt', context)
 
 @login_required
-def zayavlenie(request):
+def docs_zayavlenie(request):
     # для студента
     template = webodt.ODFTemplate('zayavlenie_na_vipusknuyu_rabotu.odt')
 
@@ -803,6 +822,69 @@ def zayavlenie(request):
     return shortcuts.render_to_response('zayavlenie_na_vipusknuyu_rabotu.odt', context)
 
 @login_required
+def docs_otziv(request):
+    # для студента
+    template = webodt.ODFTemplate('otziv.odt')
+
+    user = request.user
+    student = get_object_or_404(Student, user=user)
+    theme = student.theme
+    teacher = theme.teacher
+
+    if student.sex:
+        last_name = (lastnames_ru.inflect(morph, user.last_name.upper(), u'рд,ед,мр')).capitalize()
+    else:
+        last_name = (lastnames_ru.inflect(morph, user.last_name.upper(), u'рд,ед,жр')).capitalize()
+    first_name = (morph.inflect_ru(user.first_name.upper(), u'рд,ед,имя', u'С')).capitalize()
+    middle_name = (morph.inflect_ru(student.middle_name.upper(), u'рд,ед,отч', u'С')).capitalize()
+
+    of_student_full_name = u'%s %s %s' % (last_name,first_name,middle_name)
+
+    on_work_type = ''
+    for s in student.type_of_work.name.split():
+        on_work_type += (morph.inflect_ru(s.upper(), u'вн,ед')).lower() + ' '
+
+    context = dict(
+        of_student_full_name = of_student_full_name,
+        theme = theme,
+        teacher = teacher,
+        on_work_type = on_work_type,
+        teacher_full_name = u'%s %s %s' % (teacher.user.last_name, teacher.user.first_name, teacher.middle_name),
+    )
+
+    return shortcuts.render_to_response('otziv.odt', context)
+
+@login_required
+def docs_recenziya(request):
+    # для студента
+    template = webodt.ODFTemplate('recenziya.odt')
+
+    user = request.user
+    student = get_object_or_404(Student, user=user)
+    theme = student.theme
+
+    if student.sex:
+        last_name = (lastnames_ru.inflect(morph, user.last_name.upper(), u'рд,ед,мр')).capitalize()
+    else:
+        last_name = (lastnames_ru.inflect(morph, user.last_name.upper(), u'рд,ед,жр')).capitalize()
+    first_name = (morph.inflect_ru(user.first_name.upper(), u'рд,ед,имя', u'С')).capitalize()
+    middle_name = (morph.inflect_ru(student.middle_name.upper(), u'рд,ед,отч', u'С')).capitalize()
+
+    of_student_full_name = u'%s %s %s' % (last_name,first_name,middle_name)
+
+    on_work_type = ''
+    for s in student.type_of_work.name.split():
+        on_work_type += (morph.inflect_ru(s.upper(), u'вн,ед')).lower() + ' '
+
+    context = dict(
+        of_student_full_name = of_student_full_name,
+        theme = theme,
+        on_work_type = on_work_type,
+    )
+
+    return shortcuts.render_to_response('recenziya.odt', context)
+
+@login_required
 def diplomniks(request):
     user = request.user
     teacher = get_object_or_404(Teacher, user=user)
@@ -851,15 +933,11 @@ def set_scores(request):
 @login_required
 def git(request):
     user = request.user
-    prof = get_us_profile(user)
 
-    try:
-        if not prof.github.id:
-            raise Http404
-    except:
+    gh=get_gh_login(user)
+    if not gh:
         raise Http404
 
-    gh=Github(login=prof.github.username, password=prof.github.password)
     gh_user = gh.users.get()
     gh_repos = gh.repos.list().all()
 
@@ -870,3 +948,75 @@ def git(request):
         'git_repos':gh_repos,
         },
         context_instance=RequestContext(request))
+
+
+@login_required
+def git_data_add(request):
+    tit = u'Логин GitHub'
+    help_text= u'Введите логин и пароль для доступа к GitHub. Логином может быть Ваш e-mail, с которым Вы регистрировались на GitHub.'
+
+    user = request.user
+
+    if request.method == "POST":
+        form = GitHubAccountForm(request.POST)
+        if form.is_valid():
+            ghlogin = form.cleaned_data['username']
+            ghpsw = form.cleaned_data['password']
+            gh=Github(login=ghlogin, password=ghpsw)
+            try:
+                gh.users.get()
+            except:
+                return render_to_response('form.html', {
+                    'tit':tit,
+                    'form':form,
+                    'help_text':u'error',
+                    }, context_instance=RequestContext(request))
+
+            form.save()
+            return HttpResponseRedirect('/')
+    else:
+        form = GitHubAccountForm(initial={'username':user.email,})
+
+    return render_to_response('form.html', {
+        'tit':tit,
+        'form':form,
+        'help_text':help_text,
+        }, context_instance=RequestContext(request))
+
+@login_required
+def git_change_psw(request):
+    tit = u'github change pasw'
+    help_text= u'enter new passw'
+
+    user = request.user
+    prof = get_us_profile(user)
+    if not prof.github.id:
+        raise Http404
+
+    #add test. ne menyat parol esli rabotaet
+
+    if request.method == "POST":
+        form = GitHubPasswordForm(request.POST)
+        if form.is_valid():
+            ghlogin = prof.github.username
+            ghpsw = form.cleaned_data['password']
+            gh=Github(login=ghlogin, password=ghpsw)
+            try:
+                gh.users.get()
+            except:
+                return render_to_response('form.html', {
+                    'tit':tit,
+                    'form':form,
+                    'help_text':u'error',
+                    }, context_instance=RequestContext(request))
+
+            form.save()
+            return HttpResponseRedirect('/')
+    else:
+        form = GitHubPasswordForm()
+
+    return render_to_response('form.html', {
+        'tit':tit,
+        'form':form,
+        'help_text':help_text,
+        }, context_instance=RequestContext(request))

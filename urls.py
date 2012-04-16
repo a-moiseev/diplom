@@ -52,14 +52,19 @@ urlpatterns = patterns('',
     url(r'^superevent/add/$', 'diplom.project2.views.super_event_add'),
 
     url(r'^docs/$', 'diplom.project2.views.docs'),
-    url(r'^docs/zadanie/$', 'diplom.project2.views.zadanie'),
-    url(r'^docs/zayavlenie/$', 'diplom.project2.views.zayavlenie'),
+    url(r'^docs/zadanie/$', 'diplom.project2.views.docs_zadanie'),
+    url(r'^docs/zayavlenie/$', 'diplom.project2.views.docs_zayavlenie'),
+    url(r'^docs/otziv/$', 'diplom.project2.views.docs_otziv'),
+    url(r'^docs/recenziya/$', 'diplom.project2.views.docs_recenziya'),
 
     url(r'^diplomniks/$', 'diplom.project2.views.diplomniks'),
 
     url(r'^scores/$', 'diplom.project2.views.set_scores'),
 
     url(r'^git/$', 'diplom.project2.views.git'),
+    url(r'^git/data/$', 'diplom.project2.views.git_data_add'),
+    url(r'^git/changepassword$', 'diplom.project2.views.git_change_psw'),
+
 )
 
 urlpatterns += staticfiles_urlpatterns()
