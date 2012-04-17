@@ -5,8 +5,8 @@
 {% block content %}
     <h1>{{ theme.name }}</h1>
     <p><strong>Руководитель:</strong> <a href="/accounts/profile/{{theme.teacher.user.id}}/">{{ theme.teacher }}</a></p>
-    {% if theme.student_set.count %}    
-        <p><strong>Дипломник:</strong> {{ theme.student_set.all|first }}</p>
+    {% if student %}
+        <p><strong>Дипломник:</strong> <a href="/accounts/profile/{{ student.user.id }}/">{{ student }}</a></p>
     {% endif %}    
     {% if theme.comments %}
         <p><strong>Комментарии:</strong><br/>

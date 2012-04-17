@@ -46,10 +46,8 @@ def get_us_profile(us):
         try:
             return Teacher.objects.get(user = us)
         except:
-            try:
-                return Secretary.objects.get(user = us)
-            except:
-                return None
+            return None
+    return None
 
 def user_student(us):
 # принимает объект user, возвращает студент или None 
@@ -175,12 +173,12 @@ def theme_edit(request, theme_id):
 
 @login_required    
 def theme_view(request, theme_id):
-    try:
-        theme = Theme.objects.get(id = theme_id)
-    except:
-        raise Http404
+    theme = get_object_or_404(Theme, id = theme_id)
+    student = theme.student_set.all()
+    if student:
+        student = student[0]
     
-    return render_to_response('theme_view.html', {'theme':theme}, context_instance=RequestContext(request))
+    return render_to_response('theme_view.html', {'theme':theme, 'student':student,}, context_instance=RequestContext(request))
 
 @login_required    
 def interest_add(request):
@@ -446,6 +444,20 @@ def specmsg_choose(request, message_id):
         student.theme = theme
         student.diplomnik = True
         student.save()
+
+        #create repo
+        gh=get_gh_login(user)
+        if not gh:
+            raise Http404
+
+        reponame = 'Diploma' #!!!!!!!!!!!!!!!!!!!!!!
+        student.github.reponame = reponame
+
+        gh.repos.create({'name':reponame, 'description':theme.name})
+
+        if theme.teacher.github_id:
+            gh.repos.collaborators.add(theme.teacher.github.username,
+                user=student.github.username, repo=student.github.reponame)
     else:
         raise Http404
     return HttpResponseRedirect('/')
@@ -978,9 +990,11 @@ def git(request):
 @login_required
 def git_data_add(request):
     tit = u'Логин GitHub'
-    help_text= u'Введите логин и пароль для доступа к GitHub. Логином может быть Ваш e-mail, с которым Вы регистрировались на GitHub.'
+    help_text= (u'Если у Вас еще нет GitHub аккаунта, зарегистрируйтест на https://github.com/signup/free',
+        u'Введите логин и пароль для доступа к GitHub. Логином может быть Ваш e-mail, с которым Вы регистрировались на GitHub.',)
 
     user = request.user
+    prof = get_us_profile(user)
 
     if request.method == "POST":
         form = GitHubAccountForm(request.POST)
@@ -997,7 +1011,11 @@ def git_data_add(request):
                     'help_text':u'error',
                     }, context_instance=RequestContext(request))
 
-            form.save()
+            ghdata = form.save()
+
+            prof.github = ghdata
+            prof.save()
+
             return HttpResponseRedirect('/')
     else:
         form = GitHubAccountForm(initial={'username':user.email,})

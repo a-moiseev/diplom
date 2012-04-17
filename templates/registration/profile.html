@@ -5,6 +5,17 @@
 {% block content %}
     <h1>{{ prof }}</h1>
 
+    {% if user.student %}
+        {% if not user.student.github.id %}
+            <p><a href="/git/data/">Заполните, пожалуйста, данные для доступа к GitHub</a></p>
+        {% endif %}
+    {% endif %}
+    {% if user.teacher %}
+        {% if not user.teacher.github.id %}
+            <p><a href="/git/data/">Заполните, пожалуйста, данные для доступа к GitHub</a></p>
+        {% endif %}
+    {% endif %}
+
     {% if prof.theme %}
         {# если студент и есть тема #}
         <p>Тема: <a href="/theme/{{prof.theme.id}}/">{{prof.theme}}</a></p>

@@ -22,6 +22,8 @@ def make_upload_path(instance, filename):
 class GitHubAccount(models.Model):
     username = models.CharField(max_length=30, blank=True, verbose_name="Логин")
     password = models.CharField(max_length=30, blank=True, verbose_name="Пароль")
+    #token = models.CharField(max_length=30, blank=True, verbose_name="Token")
+    reponame = models.CharField(max_length=30, blank=True, verbose_name="Имя Репозитория")
 
     def __unicode__(self):
         return self.username
@@ -63,7 +65,7 @@ class Theme(models.Model):
         ordering = ["name"]
 
 class Specialization(models.Model):
-    name = models.CharField(max_length=100, verbose_name=u'Специальность')
+    name = models.CharField(max_length=100, verbose_name=u'Направление')
 
     def __unicode__(self):
         return self.name

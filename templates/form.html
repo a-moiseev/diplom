@@ -6,7 +6,9 @@
 <h1>{{ tit }}</h1>
 
 {% if help_text %}
-    <p>{{ help_text }}</p>
+    {% for t in help_text %}
+        <p>{{ t|urlize }}</p>
+    {% endfor %}
 {% endif %}
     
 <form method="post">

@@ -58,12 +58,12 @@
 	<div id="aside">
         {% if user.student %}
             {% if not user.student.github.id %}
-                <p><a href="https://github.com/signup/free">!!!!!!!!!</a></p>
+                <p><a href="/git/data/">Нет доступа к GitHub</a></p>
             {% endif %}
         {% endif %}
         {% if user.teacher %}
             {% if not user.teacher.github.id %}
-                <p><a href="https://github.com/signup/free">!!!!!!!!!</a></p>
+                <p><a href="/git/data/">Нет доступа к GitHub</a></p>
             {% endif %}
         {% endif %}
 
