@@ -63,7 +63,7 @@ urlpatterns = patterns('',
 
     url(r'^git/$', 'diplom.project2.views.git'),
     url(r'^git/data/$', 'diplom.project2.views.git_data_add'),
-    url(r'^git/changepassword$', 'diplom.project2.views.git_change_psw'),
+    url(r'^git/changepassword/$', 'diplom.project2.views.git_change_psw'),
 
 )
 

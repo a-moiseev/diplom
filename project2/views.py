@@ -2,12 +2,13 @@
 
 import datetime
 import calendar as pycalendar
+from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext, Context, Template
 from django.http import Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 from pymorphy.django_conf import default_morph as morph
 from pymorphy.contrib import lastnames_ru
@@ -21,6 +22,21 @@ from webodt import shortcuts
 from pygithub3 import Github
 
 from settings import TIME_FOR_ST, DECANAT_EMAIL
+
+
+def github_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url='/git/data/'):
+    """
+    Decorator for views that checks that the user is in github, redirecting
+    to the github data page if necessary.
+    """
+    actual_decorator = user_passes_test(
+        lambda u: get_us_profile(u).github_id,
+        login_url=login_url,
+        redirect_field_name=redirect_field_name
+    )
+    if function:
+        return actual_decorator(function)
+    return actual_decorator
 
 def get_us_profile(us):
 # принимает объект user, возвращает teacher, student или None
@@ -65,7 +81,7 @@ def get_gh_login(us):
 def main(request):
     return HttpResponseRedirect(reverse('diplom.project2.views.get_profile'))
 
-@login_required    
+@login_required
 def get_profile(request, user_id = None):
     if user_id:
         try:
@@ -187,7 +203,7 @@ def interest_add(request):
     f = InterestForm()
     return render_to_response('interest_add.html', {'form':f}, context_instance=RequestContext(request))
 
-@login_required    
+@login_required
 def teachers(request):
 #выбор студентом темы и/или интересов
     user = User.objects.get(username = request.user.username)
@@ -417,7 +433,8 @@ def specmsg_reply(request, message_id, template_name='messages/reply_spec.html')
         'form': form,
     }, context_instance=RequestContext(request))
 
-@login_required 
+@login_required
+@github_required
 def specmsg_choose(request, message_id):
 #выбор темы студент становится дипломник
     user = request.user
@@ -499,7 +516,7 @@ def calendar(request, year, month, series_id=None):
 END CALENDAR
 """
 
-@login_required    
+@login_required
 def schedule(request, year=None, month=None):
     
     user = request.user
@@ -751,6 +768,8 @@ def docs_zadanie(request):
 
     user = request.user
     student = get_object_or_404(Student, user=user)
+    if not student.diplomnik:
+        raise Http404
     theme = student.theme
     teacher = theme.teacher
 
@@ -776,6 +795,8 @@ def docs_zayavlenie(request):
 
     user = request.user
     student = get_object_or_404(Student, user=user)
+    if not student.diplomnik:
+        raise Http404
     theme = student.theme
     teacher = theme.teacher
 
@@ -828,6 +849,8 @@ def docs_otziv(request):
 
     user = request.user
     student = get_object_or_404(Student, user=user)
+    if not student.diplomnik:
+        raise Http404
     theme = student.theme
     teacher = theme.teacher
 
@@ -861,6 +884,8 @@ def docs_recenziya(request):
 
     user = request.user
     student = get_object_or_404(Student, user=user)
+    if not student.diplomnik:
+        raise Http404
     theme = student.theme
 
     if student.sex:
@@ -1020,3 +1045,5 @@ def git_change_psw(request):
         'form':form,
         'help_text':help_text,
         }, context_instance=RequestContext(request))
+
+
