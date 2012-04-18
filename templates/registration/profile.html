@@ -5,14 +5,16 @@
 {% block content %}
     <h1>{{ prof }}</h1>
 
-    {% if user.student %}
-        {% if not user.student.github.id %}
-            <p><a href="/git/data/">Заполните, пожалуйста, данные для доступа к GitHub</a></p>
+    {% if user == prof.user %}
+        {% if user.student %}
+            {% if not user.student.github.id %}
+                <p><a href="/git/data/">Заполните, пожалуйста, данные для доступа к GitHub</a></p>
+            {% endif %}
         {% endif %}
-    {% endif %}
-    {% if user.teacher %}
-        {% if not user.teacher.github.id %}
-            <p><a href="/git/data/">Заполните, пожалуйста, данные для доступа к GitHub</a></p>
+        {% if user.teacher %}
+            {% if not user.teacher.github.id %}
+                <p><a href="/git/data/">Заполните, пожалуйста, данные для доступа к GitHub</a></p>
+            {% endif %}
         {% endif %}
     {% endif %}
 
@@ -20,6 +22,9 @@
         {# если студент и есть тема #}
         <p>Тема: <a href="/theme/{{prof.theme.id}}/">{{prof.theme}}</a></p>
         <p>Руководитель: <a href="/accounts/profile/{{prof.theme.teacher.user.id}}/">{{prof.theme.teacher}}</a></p>
+        {% if prof.github.reponame %}
+            <p>Repo: <a href="https://github.com/{{ prof.github.username }}/{{ prof.github.reponame }}">{{ prof.github.reponame }}</a></p>
+        {% endif %}
     {% endif %}
 
     {% if prof.interest_set.count %}

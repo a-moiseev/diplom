@@ -12,15 +12,15 @@
 {% endif %}
     
 <form method="post">
-<dl class="register">
+<dl>
 {% for field in form %}
     <dt>{{ field.label_tag }}{% csrf_token %}</dt>
-    <dd class="clearfix">{{ field }}
-    {% if field.help_text %}<div class="clearfix">{{ field.help_text }}</div>{% endif %}
+    <dd>{{ field }}
+    {% if field.help_text %}<div>{{ field.help_text }}</div>{% endif %}
     {% if field.errors %}<div class="error">{{ field.errors }}</div>{% endif %}
     </dd>
 {% endfor %}
 </dl>
-<input type="submit" value="Сохранить" / class="clearfix">
+<input type="submit" value="Сохранить">
 </form>
 {% endblock %}

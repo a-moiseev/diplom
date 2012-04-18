@@ -71,9 +71,15 @@ def get_gh_login(us):
 
     gh=Github(login=login_name, password=prof.github.password)
     try:
-        gh.users.get()
+        g_user = gh.users.get()
     except:
         return None
+
+    # test if github.username=email
+    if g_user.login != prof.github.username:
+        prof.github.username = g_user.login
+    prof.github.save()
+
     return gh
 
 def main(request):
@@ -452,12 +458,17 @@ def specmsg_choose(request, message_id):
 
         reponame = 'Diploma' #!!!!!!!!!!!!!!!!!!!!!!
         student.github.reponame = reponame
+        student.github.save()
 
         gh.repos.create({'name':reponame, 'description':theme.name})
 
+        """
+        # ?????????????? 411 error
         if theme.teacher.github_id:
             gh.repos.collaborators.add(theme.teacher.github.username,
-                user=student.github.username, repo=student.github.reponame)
+                user=student.github.username,
+                repo=student.github.reponame)
+        """
     else:
         raise Http404
     return HttpResponseRedirect('/')
@@ -752,7 +763,7 @@ def docs(request):
 
         form = StudentYearMonthForm()
         tit = u'Документация'
-        help_text = u'Введите недостающие данные.'
+        help_text = (u'Введите недостающие данные.',)
 
         return render_to_response('form.html', {
             'tit':tit,
@@ -991,7 +1002,7 @@ def git(request):
 def git_data_add(request):
     tit = u'Логин GitHub'
     help_text= (u'Если у Вас еще нет GitHub аккаунта, зарегистрируйтест на https://github.com/signup/free',
-        u'Введите логин и пароль для доступа к GitHub. Логином может быть Ваш e-mail, с которым Вы регистрировались на GitHub.',)
+        u'Введите логин и пароль для доступа к GitHub. Логином может быть Ваш E-mail.',)
 
     user = request.user
     prof = get_us_profile(user)
@@ -1016,6 +1027,8 @@ def git_data_add(request):
             prof.github = ghdata
             prof.save()
 
+            get_gh_login(user)
+
             return HttpResponseRedirect('/')
     else:
         form = GitHubAccountForm(initial={'username':user.email,})
@@ -1029,7 +1042,7 @@ def git_data_add(request):
 @login_required
 def git_change_psw(request):
     tit = u'github change pasw'
-    help_text= u'enter new passw'
+    help_text= (u'enter new passw',)
 
     user = request.user
     prof = get_us_profile(user)
@@ -1050,7 +1063,7 @@ def git_change_psw(request):
                 return render_to_response('form.html', {
                     'tit':tit,
                     'form':form,
-                    'help_text':u'error',
+                    'help_text':(u'error',),
                     }, context_instance=RequestContext(request))
 
             form.save()

@@ -30,7 +30,7 @@ class GitHubAccount(models.Model):
 
 class Teacher(models.Model):
     user = models.OneToOneField(User)
-    github = models.OneToOneField(GitHubAccount, null=True)
+    github = models.OneToOneField(GitHubAccount, null=True, blank=True)
 
     middle_name = models.CharField(max_length=30, blank=True)
     position = models.CharField(max_length=30, blank=True)
@@ -86,7 +86,7 @@ class Student(models.Model):
     # профайл студента
     # diplomnik = true - студент с темой и преподавателем
     user = models.OneToOneField(User)
-    github = models.OneToOneField(GitHubAccount, null=True)
+    github = models.OneToOneField(GitHubAccount, null=True, blank=True)
     
     birthday = models.DateField()
     phone = models.CharField(max_length=20, blank=True)

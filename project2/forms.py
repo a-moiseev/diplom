@@ -113,22 +113,25 @@ class EventAddStudentForm(ModelForm):
         model=EventStudent
         #exclude = ('event', 'number')
         fields = ('student',)
-        widjets = {'student': forms.Select()}
+        widgets = {'student': forms.Select()}
 
 class ScoreForm(ModelForm):
     class Meta:
         model=Stage
         #exclude = ('event', 'number')
         fields = ('score',)
-        widjets = {'score': forms.Select()}
+        widgets = {'score': forms.Select()}
 
 
 class GitHubAccountForm(ModelForm):
     class Meta:
         model = GitHubAccount
         fields = ('username','password',)
+        widgets = {'password': forms.PasswordInput()}
 
 class GitHubPasswordForm(ModelForm):
     class Meta:
         model = GitHubAccount
         fields = ('password',)
+        widgets = {'password': forms.PasswordInput()}
+
