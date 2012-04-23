@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    <p><a href="{% url create %}">Create Meeting</a></p>
+    <p><a href="{% url meetings %}">Meetings</a></p>
+{% endif %}
+{% endblock %}
