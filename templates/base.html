@@ -41,7 +41,7 @@
                 <li><a href="/diplomniks/">Дипломники</a></li>
             {% endif %}
 			<li><a href="/schedule/">Расписание</a></li>
-            <li><a href="/chat/rooms/">Чат</a></li>
+            <li><a href="/chat/">Чат</a></li>
 			<li><a href="/messages/">Сообщения</a></li>
 		{% endif %}
 		</ul>
@@ -69,6 +69,14 @@
 
 
 		{% block sidebar %}
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                <hr />
+            {% endif %}
 		{% endblock %}
 	</div>
 

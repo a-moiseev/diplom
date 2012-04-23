@@ -96,7 +96,7 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    #'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
 )
@@ -128,11 +128,14 @@ INSTALLED_APPS = (
     'registration',
     'messages',
     #'polymorphic',
-    'chatrooms',
+    #'chatrooms',
     'webodt',
     #'django_declension',
     'pymorphy',
     #'south',
+
+    'bbb',
+    'gunicorn',
 )
 
 # WEBODT
@@ -158,6 +161,9 @@ EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False
 DEFAULT_FROM_EMAIL = 'info@google.ru'
 
+#bbb
+SALT = "52eddc04e2bb5a87dd80bc79e7d373f5"
+BBB_API_URL = "http://192.168.1.95/bigbluebutton/api/"
 
 #мои глобальные
 TIME_FOR_ST = 30 # минут на одного студента при записи на встречу

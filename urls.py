@@ -41,7 +41,7 @@ urlpatterns = patterns('',
     url(r'^messages/', include('messages.urls')),
     
     #url(r'^chat/', include('jqchat.urls')),
-    url(r'^chat/', include('chatrooms.urls')),
+    #url(r'^chat/', include('chatrooms.urls')),
     
     url(r'^schedule/$', 'diplom.project2.views.schedule'),
     url(r'^schedule/(?P<year>\d+)/(?P<month>\d+)/$', 'diplom.project2.views.schedule'), # year - 4 цифры!!!
@@ -64,6 +64,8 @@ urlpatterns = patterns('',
     url(r'^git/$', 'diplom.project2.views.git'),
     url(r'^git/data/$', 'diplom.project2.views.git_data_add'),
     url(r'^git/changepassword/$', 'diplom.project2.views.git_change_psw'),
+
+    url(r'^chat/', include('bbb.urls')),
 
 )
 
