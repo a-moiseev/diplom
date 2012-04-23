@@ -23,7 +23,7 @@
         <p>Тема: <a href="/theme/{{prof.theme.id}}/">{{prof.theme}}</a></p>
         <p>Руководитель: <a href="/accounts/profile/{{prof.theme.teacher.user.id}}/">{{prof.theme.teacher}}</a></p>
         {% if prof.github.reponame %}
-            <p>Repo: <a href="https://github.com/{{ prof.github.username }}/{{ prof.github.reponame }}">{{ prof.github.reponame }}</a></p>
+            <p>Репозиторий: <a href="https://github.com/{{ prof.github.username }}/{{ prof.github.reponame }}">{{ prof.github.reponame }}</a></p>
         {% endif %}
     {% endif %}
 
@@ -80,4 +80,8 @@
         <p align="right"><a href='{{ site }}/theme/add/'>Добавить тему</a></p>
     {% endif %}
 
+{% endblock %}
+
+{% block sidebar %}
+    <p><a href="/accounts/password/change/">Изменить пароль</a></p>
 {% endblock %}

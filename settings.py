@@ -13,7 +13,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'dpr',                      # Or path to database file if using sqlite3.
+        'NAME': 'dpr1',                      # Or path to database file if using sqlite3.
         'USER': 'dpr',                      # Not used with sqlite3.
         'PASSWORD': 'H!67fdEE',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.

@@ -1041,8 +1041,8 @@ def git_data_add(request):
 
 @login_required
 def git_change_psw(request):
-    tit = u'github change pasw'
-    help_text= (u'enter new passw',)
+    tit = u'Изменить пароль GitHub'
+    help_text= (u'Введите новый пароль для доступа к GitHub',)
 
     user = request.user
     prof = get_us_profile(user)
