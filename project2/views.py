@@ -712,7 +712,7 @@ def super_event_add(request):
         'form':form,
         }, context_instance=RequestContext(request))
 
-
+"""
 @login_required
 def event_add_student(request, event_id):
     #преподаватель добавляет студента к встрече
@@ -739,6 +739,37 @@ def event_add_student(request, event_id):
         
     tit = u'Назначить встречу студенту'
     
+    return render_to_response('form.html', {
+        'tit':tit,
+        'form':form,
+        }, context_instance=RequestContext(request))
+"""
+@login_required
+def event_add_student(request, event_id):
+    #преподаватель добавляет студента(ов) к встрече
+    #для очной встречи или встречи в чате
+
+    event = get_object_or_404(Event, id=int(event_id))
+
+    user = request.user
+    #только тичер
+    prof = get_object_or_404(Teacher, user = user)
+
+    if request.method == "POST":
+        event_num = EventStudent(
+            event=event,
+            date=event.date_and_time.date(),
+            time=event.date_and_time.time(),
+        )
+        form = EventAddStudentForm(request.POST, instance = event_num)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/schedule/')
+    else:
+        form = EventAddStudentsForm()
+
+    tit = u'Назначить встречу студенту(ам)'
+
     return render_to_response('form.html', {
         'tit':tit,
         'form':form,

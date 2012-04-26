@@ -16,11 +16,11 @@
 {% for field in form %}
     <dt>{{ field.label_tag }}{% csrf_token %}</dt>
     <dd>{{ field }}
-    {% if field.help_text %}<div>{{ field.help_text }}</div>{% endif %}
+    {% if field.help_text %}<div class="helptext">{{ field.help_text }}</div>{% endif %}
     {% if field.errors %}<div class="error">{{ field.errors }}</div>{% endif %}
     </dd>
 {% endfor %}
 </dl>
-<input type="submit" value="Сохранить">
+<input type="submit" value="{% if value %}{{ value }}{% else %}Сохранить{% endif %}">
 </form>
 {% endblock %}

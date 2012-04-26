@@ -4,7 +4,7 @@ from django import forms
 from django.forms.extras.widgets import SelectDateWidget
 from django.forms import ModelForm
 
-from diplom.project2.models import Theme, Interest, Event, EventStudent, TypeOfWork, Specialization, Stage, GitHubAccount
+from diplom.project2.models import *
 
 import datetime
 
@@ -114,6 +114,11 @@ class EventAddStudentForm(ModelForm):
         #exclude = ('event', 'number')
         fields = ('student',)
         widgets = {'student': forms.Select()}
+
+class EventAddStudentsForm(forms.Form):
+    students = forms.ModelMultipleChoiceField(queryset=Student.objects.all(),
+        widget=forms.SelectMultiple,
+        label=u'Студенты:', required=True)
 
 class ScoreForm(ModelForm):
     class Meta:

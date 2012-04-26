@@ -4,6 +4,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from messages.models import Message
 
+from bbb.models import Meeting
+
 SCORE_CHOICES = {
     (1, '1'),
     (2, '2'),
@@ -135,6 +137,8 @@ class Serie(models.Model):
     project.views.event_add
     прием, встреча в чате и т.д.
 
+    videoconf id=3!!!!!!
+
     также защита, предзащита
     """
 
@@ -142,15 +146,22 @@ class Serie(models.Model):
     
     def __unicode__(self):
         return self.primary_name
+
+#class EventConf(models.Model):
+#    name = models.CharField(max_length=50)
+#    attendee_password = models.CharField(max_length=50, null=True, blank=True)
+#    moderator_password = models.CharField(max_length=50, null=True, blank=True)
     
 class Event(models.Model):
     series = models.ForeignKey(Serie, verbose_name=u'Вид встречи')
-    date_and_time = models.DateTimeField(verbose_name=u'Дата и время начала') #начало
+    date_and_time = models.DateTimeField(help_text=u'Дата в формате YYYY-MM-DD, время в формате HH:MM', verbose_name=u'Дата и время начала') #начало
     #date = models.DateField()
     #starttime = models.TimeField()
-    endtime = models.TimeField(null=True, blank=True, verbose_name=u'Конец встречи (время)') #конец встречи
+    endtime = models.TimeField(null=True, blank=True, verbose_name=u'Конец встречи (время)', help_text=u'Время в формате HH:MM') #конец встречи
     
     teacher = models.ForeignKey(Teacher, null=True, blank=True) #защита/предзащита =null
+
+    meeting = models.ForeignKey(Meeting, null=True, blank=True)
 
     #для защиты, предзащиты ...
     specialization = models.ForeignKey(Specialization, blank=True, null=True, verbose_name=u'Направление')

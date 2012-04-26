@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.http import (Http404, HttpResponseRedirect, HttpResponseNotFound,
                         HttpResponse)
 from django.shortcuts import render_to_response
@@ -44,6 +46,7 @@ def meetings(request):
 
 def join_meeting(request, meeting_id):
     form_class = Meeting.JoinForm
+    user=request.user
 
     if request.method == "POST":
         # Get post data from form
@@ -55,14 +58,19 @@ def join_meeting(request, meeting_id):
 
             return HttpResponseRedirect(Meeting.join_url(meeting_id, name, password))
     else:
-        form = form_class()
+        form = form_class(initial={'name':user.username,})
+
+    tit = u'Присоединиться к конференции \"%s\"' % (meeting_id)
+    value = u'Присоединиться'
 
     context = RequestContext(request, {
+        'tit': tit,
         'form': form,
         'meeting_name': meeting_id,
+        'value': value,
     })
 
-    return render_to_response('join.html', context)
+    return render_to_response('form.html', context)
 
 @login_required
 def delete_meeting(request, meeting_id, password):
@@ -81,6 +89,8 @@ def delete_meeting(request, meeting_id, password):
 
 @login_required
 def create_meeting(request):
+    tit = 'Создать конференцию'
+
     form_class = Meeting.CreateForm
 
     if request.method == "POST":
@@ -91,6 +101,7 @@ def create_meeting(request):
             meeting = Meeting()
             meeting.name = data.get('name')
             #password = hashlib.sha1(data.get('password')).hexdigest()
+
             meeting.attendee_password = data.get('attendee_password')
             meeting.moderator_password = data.get('moderator_password')
             meeting.meeting_id = data.get('meeting_id')
@@ -109,7 +120,8 @@ def create_meeting(request):
         form = form_class()
 
     context = RequestContext(request, {
+        'tit': tit,
         'form': form,
     })
 
-    return render_to_response('create.html', context)
+    return render_to_response('form.html', context)

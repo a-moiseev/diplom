@@ -7,31 +7,26 @@
 {% if meetings %}
     <ul class="large">
     {% for meeting in meetings %}
-        <li>{{ meeting.name }} <a class="more-info">view details</a>
-            <span class="right">
-            {% if meeting.info.end_time == "null" %}
+        <li><strong>{{ meeting.name }}</strong>
             {% if meeting.running == 'true'  %}
-                <span class="status running">Running</span>
+                Running
             {% else %}
-                <span class="status notrunning">Not running</span>
+                Not running
             {% endif %}
-            <form method="GET" action="{% url join meeting.name %}"><input type="submit" value="Join"></form> <form method="POST" action="{% url delete meeting.name meeting.moderator_pw %}">{% csrf_token %}<input type="submit" value="End"></form>
-            {% else %}
-                <span class="status notrunning">Ended</span>
+            <form method="GET" action="{% url join meeting.name %}"><input type="submit" value="Join"></form>
+            {% if user.teacher %}
+                <form method="POST" action="{% url delete meeting.name meeting.moderator_pw %}">{% csrf_token %}<input type="submit" value="End"></form>
             {% endif %}
-            </span>
-            <table>
-                {% for item in meeting.info.items %}
-                <tr>
-                <th>{{ item.0 }}</td>
-                <td>{{ item.1 }}</td>
-                </tr>
-                {% endfor %}
-            </table>
         </li>
     {% endfor %}
     </ul>
 {% else %}
     <p>There are no meetings at the moment.</p>
 {% endif %}
+{% endblock %}
+
+{% block sidebar %}
+    {% if user.teacher %}
+        <p><a href="/chat/create/">Create Meeting</a></p>
+    {% endif %}
 {% endblock %}

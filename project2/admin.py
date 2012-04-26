@@ -1,6 +1,6 @@
 from django.contrib import admin
 from diplom.project2.models import *
-
+from diplom.bbb.models import *
 
 admin.site.register(Student)
 admin.site.register(Teacher)
@@ -13,3 +13,5 @@ admin.site.register(Specialization)
 admin.site.register(Stage)
 admin.site.register(TypeOfWork)
 admin.site.register(GitHubAccount)
+
+admin.site.register(Meeting)

@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.conf.urls.defaults import *
 from bbb.views.core import (home_page, create_meeting, begin_meeting, meetings,
                             join_meeting, delete_meeting)
