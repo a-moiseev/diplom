@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}{{ tit }}{% endblock %}
+
+{% block content %}
+<h1>{{ tit }}</h1>
+
+{% if help_text %}
+    {% for t in help_text %}
+        <p>{{ t|urlize }}</p>
+    {% endfor %}
+{% endif %}
+
+<p><a href="/event/{{ event.id }}/addstudent/all/">Add all stududents</a><br>
+    <a href="/event/{{ event.id }}/addstudent/diplomniks/">Add my diplomniks</a></p>
+
+            <form method="post">
+            <dl>
+            {% for field in form %}
+                <dt>{{ field.label_tag }}{% csrf_token %}</dt>
+                <dd>{{ field }}
+                {% if field.help_text %}<div class="helptext">{{ field.help_text }}</div>{% endif %}
+                {% if field.errors %}<div class="error">{{ field.errors }}</div>{% endif %}
+                </dd>
+            {% endfor %}
+            </dl>
+            <input type="submit" value="{% if value %}{{ value }}{% else %}Сохранить{% endif %}">
+            </form>
+
+{% endblock %}

@@ -82,6 +82,13 @@ def get_gh_login(us):
 
     return gh
 
+def get_diplomniks(tch):
+    dp = []
+    for t in Theme.objects.filter(teacher=tch):
+        if t.student_set.count():
+            dp.append(t.student_set.all()[0])
+    return dp
+
 def main(request):
     return HttpResponseRedirect(reverse('diplom.project2.views.get_profile'))
 
@@ -755,25 +762,63 @@ def event_add_student(request, event_id):
     #только тичер
     prof = get_object_or_404(Teacher, user = user)
 
+    call_students=None
+
     if request.method == "POST":
-        event_num = EventStudent(
-            event=event,
-            date=event.date_and_time.date(),
-            time=event.date_and_time.time(),
-        )
-        form = EventAddStudentForm(request.POST, instance = event_num)
+        form = EventAddStudentsForm(request.POST)
         if form.is_valid():
-            form.save()
+            data = form.cleaned_data['students']
+            for st in data:
+                ev_st=EventStudent(event=event,
+                    date = event.date_and_time.date(),
+                    time=event.date_and_time.time(),
+                    student=st)
+                ev_st.save()
             return HttpResponseRedirect('/schedule/')
     else:
-        form = EventAddStudentsForm()
+        if 'call_students' in request.session:
+            call_students=request.session['call_students']
+            del request.session['call_students']
+            form = EventAddStudentsForm(initial={'students':call_students,})
+        else:
+            form = EventAddStudentsForm()
 
     tit = u'Назначить встречу студенту(ам)'
 
-    return render_to_response('form.html', {
+    return render_to_response('form1.html', {
         'tit':tit,
         'form':form,
+        'event':event,
+        'test':call_students,
         }, context_instance=RequestContext(request))
+
+@login_required
+def event_add_students_all(request, event_id):
+    event = get_object_or_404(Event, id=int(event_id))
+
+    user = request.user
+    #только тичер
+    prof = get_object_or_404(Teacher, user = user)
+
+    call_students=Student.objects.all()
+
+    request.session['call_students']=call_students
+
+    return HttpResponseRedirect('/event/%s/addstudent/' % event.id)
+
+@login_required
+def event_add_students_diplomniks(request, event_id):
+    event = get_object_or_404(Event, id=int(event_id))
+
+    user = request.user
+    #только тичер
+    prof = get_object_or_404(Teacher, user = user)
+
+    call_students=get_diplomniks(prof)
+
+    request.session['call_students']=call_students
+
+    return HttpResponseRedirect('/event/%s/addstudent/' % event.id)
 
 @login_required
 def docs(request):
@@ -968,11 +1013,8 @@ def diplomniks(request):
     user = request.user
     teacher = get_object_or_404(Teacher, user=user)
 
-    diplomniks = []
-    for t in Theme.objects.filter(teacher=teacher):
-        if t.student_set.count():
-            diplomniks.append(t.student_set.all()[0])
-    
+    diplomniks = get_diplomniks(teacher)
+
     return render_to_response('diplomniks.html', {'diplomniks':diplomniks},
         context_instance=RequestContext(request))
 

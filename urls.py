@@ -49,6 +49,8 @@ urlpatterns = patterns('',
     url(r'^event/(?P<event_id>\d+)/$', 'diplom.project2.views.event_view'),
     url(r'^event/(?P<event_id>\d+)/join/$', 'diplom.project2.views.event_join'),
     url(r'^event/(?P<event_id>\d+)/addstudent/$', 'diplom.project2.views.event_add_student'),
+    url(r'^event/(?P<event_id>\d+)/addstudent/all/$', 'diplom.project2.views.event_add_students_all'),
+    url(r'^event/(?P<event_id>\d+)/addstudent/diplomniks/$', 'diplom.project2.views.event_add_students_diplomniks'),
     url(r'^superevent/add/$', 'diplom.project2.views.super_event_add'),
 
     url(r'^docs/$', 'diplom.project2.views.docs'),

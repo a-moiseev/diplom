@@ -116,9 +116,8 @@ class EventAddStudentForm(ModelForm):
         widgets = {'student': forms.Select()}
 
 class EventAddStudentsForm(forms.Form):
-    students = forms.ModelMultipleChoiceField(queryset=Student.objects.all(),
-        widget=forms.SelectMultiple,
-        label=u'Студенты:', required=True)
+    students = forms.ModelMultipleChoiceField(queryset=Student.objects.all(), widget=forms.SelectMultiple,
+        label=u'Студенты:')
 
 class ScoreForm(ModelForm):
     class Meta:
