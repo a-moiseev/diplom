@@ -582,7 +582,10 @@ def schedule(request, year=None, month=None):
             # студенту показать только все event.series.id=1
             # и осдальные ид, куда он записан
             s = Serie.objects.get(id = 1)
-            event_list = list(event_month.filter(series = s))
+            if user.student.diplomnik:
+                event_list = list(event_month.filter(series = s).filter(teacher = user.student.theme.teacher))
+            else:
+                event_list = list(event_month.filter(series = s))
             for evl in event_month.exclude(series = s):
                 es = evl.eventstudent_set.filter(student = user.student)
                 if es:

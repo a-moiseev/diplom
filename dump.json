@@ -63,6 +63,15 @@
     }
   },
   {
+    "pk": 25,
+    "model": "contenttypes.contenttype",
+    "fields": {
+      "model": "meeting",
+      "name": "meeting",
+      "app_label": "bbb"
+    }
+  },
+  {
     "pk": 4,
     "model": "contenttypes.contenttype",
     "fields": {
@@ -272,11 +281,59 @@
     }
   },
   {
-    "pk": "92d3f834269ec67c772c70c55d25518a",
+    "pk": "8903e41bbf0da13842ca99da82b5a11b",
     "model": "sessions.session",
     "fields": {
-      "expire_date": "2012-05-03 16:43:33",
+      "expire_date": "2012-05-11 16:12:02",
+      "session_data": "N2UwNDFiNmY1MGYxMDBmMWRmNzBhYzkyODEyNTVmOTNlMTFhYzE4NDqAAn1xAShVDV9hdXRoX3Vz\nZXJfaWSKAQRVEl9hdXRoX3VzZXJfYmFja2VuZFUpZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5k\ncy5Nb2RlbEJhY2tlbmR1Lg==\n"
+    }
+  },
+  {
+    "pk": "c10b676b0fb670be40d125fa64c9a733",
+    "model": "sessions.session",
+    "fields": {
+      "expire_date": "2012-05-08 12:08:41",
+      "session_data": "OWNlMmJlNTMxZmNmNjQ4MTU0YzgxMTVhMWViMGYzM2RiY2IyYjk5OTqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQ1fYXV0aF91c2VyX2lkcQSKAQR1Lg==\n"
+    }
+  },
+  {
+    "pk": "aefb416f3630c620fbac27c49a86e641",
+    "model": "sessions.session",
+    "fields": {
+      "expire_date": "2012-05-10 17:03:24",
+      "session_data": "YTJmZWJmNTRkYTk3YjVmYTkzZGExYzkwM2Q2OGU5MTQ1YjM5YWNiZTqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQ1fYXV0aF91c2VyX2lkcQSKAQN1Lg==\n"
+    }
+  },
+  {
+    "pk": "2a1f2516a5c45d79ff51b77484bf4582",
+    "model": "sessions.session",
+    "fields": {
+      "expire_date": "2012-05-10 15:02:28",
       "session_data": "ZTgwNDZkNmJmM2UwNDY4MmQ5YmZkNTYyMTk0NDM0ZGU5N2ExZGU4ZTqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQ1fYXV0aF91c2VyX2lkcQSKAQJ1Lg==\n"
+    }
+  },
+  {
+    "pk": "8814853b90cc293982037f5368561799",
+    "model": "sessions.session",
+    "fields": {
+      "expire_date": "2012-05-11 15:10:13",
+      "session_data": "ZDRhN2U2NjU2NzgyNzk4MmZiMmMyOTA0ZTYxMmQ1MGMyMDU0NTdiMTqAAn1xAVUKdGVzdGNvb2tp\nZXECVQZ3b3JrZWRxA3Mu\n"
+    }
+  },
+  {
+    "pk": "6f0985a3da50d1ac2d5ee31f967a6ebb",
+    "model": "sessions.session",
+    "fields": {
+      "expire_date": "2012-05-11 16:11:40",
+      "session_data": "YzMwZGJjNjY0ZWI0MjM5OTQwZTI0NmZhOGVjYjRkODVjNDE2Mzg1MzqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZFUpZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmRVDV9h\ndXRoX3VzZXJfaWSKAQR1Lg==\n"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "sites.site",
+    "fields": {
+      "domain": "example.com",
+      "name": "example.com"
     }
   },
   {
@@ -294,7 +351,7 @@
       "body": " ",
       "recipient_deleted_at": null,
       "sender_deleted_at": null,
-      "read_at": null,
+      "read_at": "2012-04-27 15:58:49",
       "parent_msg": null,
       "sent_at": "2012-04-20 19:50:10",
       "replied_at": null,
@@ -333,6 +390,175 @@
       "subject": "\u0417\u0430\u043f\u0440\u043e\u0441",
       "recipient": 4,
       "sender": 2
+    }
+  },
+  {
+    "pk": 41,
+    "model": "admin.logentry",
+    "fields": {
+      "action_flag": 3,
+      "action_time": "2012-04-26 17:00:16",
+      "object_repr": "\u041f\u0440\u0438\u0435\u043c. 2012-04-20 18:00:00",
+      "object_id": "1",
+      "change_message": "",
+      "user": 1,
+      "content_type": 19
+    }
+  },
+  {
+    "pk": 40,
+    "model": "admin.logentry",
+    "fields": {
+      "action_flag": 2,
+      "action_time": "2012-04-26 16:31:58",
+      "object_repr": "\u0412\u0438\u0434\u0435\u043e\u043a\u043e\u043d\u0444\u0435\u0440\u0435\u043d\u0446\u0438\u044f",
+      "object_id": "3",
+      "change_message": "\u0418\u0437\u043c\u0435\u043d\u0435\u043d primary_name.",
+      "user": 1,
+      "content_type": 18
+    }
+  },
+  {
+    "pk": 29,
+    "model": "admin.logentry",
+    "fields": {
+      "action_flag": 3,
+      "action_time": "2012-04-26 16:31:10",
+      "object_repr": "Meeting object",
+      "object_id": "11",
+      "change_message": "",
+      "user": 1,
+      "content_type": 25
+    }
+  },
+  {
+    "pk": 30,
+    "model": "admin.logentry",
+    "fields": {
+      "action_flag": 3,
+      "action_time": "2012-04-26 16:31:10",
+      "object_repr": "Meeting object",
+      "object_id": "10",
+      "change_message": "",
+      "user": 1,
+      "content_type": 25
+    }
+  },
+  {
+    "pk": 31,
+    "model": "admin.logentry",
+    "fields": {
+      "action_flag": 3,
+      "action_time": "2012-04-26 16:31:10",
+      "object_repr": "Meeting object",
+      "object_id": "9",
+      "change_message": "",
+      "user": 1,
+      "content_type": 25
+    }
+  },
+  {
+    "pk": 32,
+    "model": "admin.logentry",
+    "fields": {
+      "action_flag": 3,
+      "action_time": "2012-04-26 16:31:10",
+      "object_repr": "Meeting object",
+      "object_id": "8",
+      "change_message": "",
+      "user": 1,
+      "content_type": 25
+    }
+  },
+  {
+    "pk": 33,
+    "model": "admin.logentry",
+    "fields": {
+      "action_flag": 3,
+      "action_time": "2012-04-26 16:31:10",
+      "object_repr": "Meeting object",
+      "object_id": "7",
+      "change_message": "",
+      "user": 1,
+      "content_type": 25
+    }
+  },
+  {
+    "pk": 34,
+    "model": "admin.logentry",
+    "fields": {
+      "action_flag": 3,
+      "action_time": "2012-04-26 16:31:10",
+      "object_repr": "Meeting object",
+      "object_id": "6",
+      "change_message": "",
+      "user": 1,
+      "content_type": 25
+    }
+  },
+  {
+    "pk": 35,
+    "model": "admin.logentry",
+    "fields": {
+      "action_flag": 3,
+      "action_time": "2012-04-26 16:31:10",
+      "object_repr": "Meeting object",
+      "object_id": "5",
+      "change_message": "",
+      "user": 1,
+      "content_type": 25
+    }
+  },
+  {
+    "pk": 36,
+    "model": "admin.logentry",
+    "fields": {
+      "action_flag": 3,
+      "action_time": "2012-04-26 16:31:10",
+      "object_repr": "Meeting object",
+      "object_id": "4",
+      "change_message": "",
+      "user": 1,
+      "content_type": 25
+    }
+  },
+  {
+    "pk": 37,
+    "model": "admin.logentry",
+    "fields": {
+      "action_flag": 3,
+      "action_time": "2012-04-26 16:31:10",
+      "object_repr": "Meeting object",
+      "object_id": "3",
+      "change_message": "",
+      "user": 1,
+      "content_type": 25
+    }
+  },
+  {
+    "pk": 38,
+    "model": "admin.logentry",
+    "fields": {
+      "action_flag": 3,
+      "action_time": "2012-04-26 16:31:10",
+      "object_repr": "Meeting object",
+      "object_id": "2",
+      "change_message": "",
+      "user": 1,
+      "content_type": 25
+    }
+  },
+  {
+    "pk": 39,
+    "model": "admin.logentry",
+    "fields": {
+      "action_flag": 3,
+      "action_time": "2012-04-26 16:31:10",
+      "object_repr": "Meeting object",
+      "object_id": "1",
+      "change_message": "",
+      "user": 1,
+      "content_type": 25
     }
   },
   {
@@ -949,28 +1175,75 @@
     "pk": 3,
     "model": "project2.serie",
     "fields": {
-      "primary_name": "\u0412\u0441\u0442\u0440\u0435\u0447\u0430 \u0432 \u0447\u0430\u0442\u0435"
+      "primary_name": "\u0412\u0438\u0434\u0435\u043e\u043a\u043e\u043d\u0444\u0435\u0440\u0435\u043d\u0446\u0438\u044f"
     }
   },
   {
-    "pk": 1,
+    "pk": 3,
     "model": "project2.event",
     "fields": {
-      "series": 1,
-      "endtime": "22:00:00",
       "specialization": null,
-      "teacher": 1,
-      "date_and_time": "2012-04-20 18:00:00"
+      "series": 3,
+      "date_and_time": "2012-04-27 12:00:00",
+      "endtime": "13:00:00",
+      "meeting": null,
+      "teacher": 2
     }
   },
   {
-    "pk": 1,
+    "pk": 2,
+    "model": "project2.event",
+    "fields": {
+      "specialization": null,
+      "series": 1,
+      "date_and_time": "2012-04-27 18:00:00",
+      "endtime": "18:00:00",
+      "meeting": null,
+      "teacher": 2
+    }
+  },
+  {
+    "pk": 4,
+    "model": "project2.event",
+    "fields": {
+      "specialization": null,
+      "series": 3,
+      "date_and_time": "2012-04-30 19:00:00",
+      "endtime": "20:00:00",
+      "meeting": null,
+      "teacher": 1
+    }
+  },
+  {
+    "pk": 5,
+    "model": "project2.event",
+    "fields": {
+      "specialization": null,
+      "series": 3,
+      "date_and_time": "2012-05-01 12:00:00",
+      "endtime": null,
+      "meeting": null,
+      "teacher": 1
+    }
+  },
+  {
+    "pk": 4,
     "model": "project2.eventstudent",
     "fields": {
-      "date": "2012-04-20",
-      "event": 1,
+      "date": "2012-04-30",
+      "event": 4,
       "student": 2,
-      "time": "18:00:00"
+      "time": "19:00:00"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "project2.eventstudent",
+    "fields": {
+      "date": "2012-04-30",
+      "event": 4,
+      "student": 1,
+      "time": "19:00:00"
     }
   },
   {
@@ -1020,7 +1293,7 @@
       "body": " ",
       "recipient_deleted_at": null,
       "sender_deleted_at": null,
-      "read_at": null,
+      "read_at": "2012-04-27 15:58:49",
       "parent_msg": null,
       "sent_at": "2012-04-20 19:50:10",
       "replied_at": null,
@@ -1194,6 +1467,33 @@
       "codename": "delete_user",
       "name": "Can delete user",
       "content_type": 3
+    }
+  },
+  {
+    "pk": 73,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_meeting",
+      "name": "Can add meeting",
+      "content_type": 25
+    }
+  },
+  {
+    "pk": 74,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_meeting",
+      "name": "Can change meeting",
+      "content_type": 25
+    }
+  },
+  {
+    "pk": 75,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_meeting",
+      "name": "Can delete meeting",
+      "content_type": 25
     }
   },
   {
@@ -1719,7 +2019,7 @@
       "is_active": true,
       "is_superuser": true,
       "is_staff": true,
-      "last_login": "2012-04-23 17:25:19",
+      "last_login": "2012-04-26 16:15:44",
       "groups": [],
       "user_permissions": [],
       "password": "sha1$e6172$3f9c72d094f21bb573219594ea2503bf8ffb1bd8",
@@ -1737,7 +2037,7 @@
       "is_active": true,
       "is_superuser": false,
       "is_staff": false,
-      "last_login": "2012-04-20 19:39:55",
+      "last_login": "2012-04-26 22:11:51",
       "groups": [],
       "user_permissions": [],
       "password": "sha1$ab168$2284ae1ddf23643ee0880b2378f5ec0657be89be",
@@ -1755,7 +2055,7 @@
       "is_active": true,
       "is_superuser": false,
       "is_staff": false,
-      "last_login": "2012-04-20 19:49:42",
+      "last_login": "2012-04-26 17:03:24",
       "groups": [],
       "user_permissions": [],
       "password": "sha1$cff30$5b915d7bbdb56cccb49c629b576e195f6b47b5f3",
@@ -1773,7 +2073,7 @@
       "is_active": true,
       "is_superuser": false,
       "is_staff": false,
-      "last_login": "2012-04-20 19:44:57",
+      "last_login": "2012-04-27 16:10:54",
       "groups": [],
       "user_permissions": [],
       "password": "sha1$deaee$a8d25ba2d4b89a80ac509e363a9df126216df890",
@@ -1791,7 +2091,7 @@
       "is_active": true,
       "is_superuser": false,
       "is_staff": false,
-      "last_login": "2012-04-18 11:34:18",
+      "last_login": "2012-04-26 15:56:41",
       "groups": [],
       "user_permissions": [],
       "password": "sha1$9a3a3$14240818e695f7a8ad411769252668b187f53b4c",

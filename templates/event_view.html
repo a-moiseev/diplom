@@ -13,12 +13,37 @@
     <dt>Время:</dt>
     <dd>{{ event.date_and_time|date:"G:i" }}&mdash;{{ event.endtime|time:"G:i" }}</dd>
 
+    {% if event.series.id == 3 %}
+        <dt>Meeting</dt>
+        {% if event.meeting %}
+            <dd>{{ event.meeting.name }}<br/>
+            <a href="{% url join event.meeting.name %}">Join Meeting</a></dd>
+            {% if event.teacher.user == user %}
+                <dd>Moderator password: {{ event.meeting.moderator_password }}</dd>
+            {% endif %}
+            {% if event_students %}
+                {% for st in event_students %}
+                    {% if user.student == st.student %}
+                        <dd>Password: {{ event.meeting.attendee_password }}</dd>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% else %}
+            {% if event.teacher.user == user %}
+                <dd><a href="/chat/create/{{ event.id }}/">Create Meeting</a></dd>
+            {% endif %}
+            <dd>No data</dd>
+        {% endif %}
+    {% endif %}
+
     {% if errors %}
         <p class="error">{{errors}}</p>
     {% endif %}
 
+    {% if event.series.id == 1 %}
     {% if user.student %}
         <p><a href="/event/{{event.id}}/join/">Записаться</a></p>
+    {% endif %}
     {% endif %}
 
     {% if event_students %}

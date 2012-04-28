@@ -2,7 +2,7 @@
 
 from django.http import (Http404, HttpResponseRedirect, HttpResponseNotFound,
                         HttpResponse)
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.views import login as django_login
 from django.template import RequestContext
@@ -12,6 +12,8 @@ from django.contrib import messages
 import hashlib
 
 from bbb.models import Meeting
+
+from project2.models import Event
 
 def home_page(request):
     context = RequestContext(request, {
@@ -88,10 +90,16 @@ def delete_meeting(request, meeting_id, password):
         return HttpResponseRedirect(reverse('meetings'))
 
 @login_required
-def create_meeting(request):
+def create_meeting(request, event_id=None):
     tit = 'Создать конференцию'
 
     form_class = Meeting.CreateForm
+
+
+    if event_id:
+        event = get_object_or_404(Event, id=event_id)
+        if event.series.id != 3:
+            raise Http404
 
     if request.method == "POST":
         # Get post data from form
@@ -110,6 +118,11 @@ def create_meeting(request):
                 meeting.save()
                 msg = 'Successfully created meeting %s' % meeting.meeting_id
                 messages.success(request, msg)
+
+                if event_id:
+                    event.meeting = meeting
+                    event.save()
+
                 return HttpResponseRedirect(reverse('meetings'))
             except:
                 return HttpResponse("An error occureed whilst creating the " \
