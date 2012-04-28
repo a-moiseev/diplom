@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.db import models
 from django import forms
 from django.conf import settings
@@ -148,11 +150,11 @@ class Meeting(models.Model):
         return url
 
     class CreateForm(forms.Form):
-        name = forms.SlugField()
+        name = forms.SlugField(label=u"Название")
         attendee_password = forms.CharField(
-            widget=forms.PasswordInput(render_value=False))
+            widget=forms.PasswordInput(render_value=False), label=u"Пароль слушателя")
         moderator_password= forms.CharField(
-            widget=forms.PasswordInput(render_value=False))
+            widget=forms.PasswordInput(render_value=False), label=u"Пароль модератора")
 
         def clean(self):
             data = self.cleaned_data

@@ -1,32 +1,32 @@
 {% extends "base.html" %}
 
-{% block title %}Meetings{% endblock %}
+{% block title %}Видеоконференции{% endblock %}
 
 {% block content %}
-<h2>Meetings</h2>
+<h1>Видеоконференции</h1>
 {% if meetings %}
     <ul class="large">
     {% for meeting in meetings %}
         <li><strong>{{ meeting.name }}</strong>
             {% if meeting.running == 'true'  %}
-                Running
+                Начата
             {% else %}
-                Not running
+                Не начата
             {% endif %}
-            <form method="GET" action="{% url join meeting.name %}"><input type="submit" value="Join"></form>
+            <form method="GET" action="{% url join meeting.name %}"><input type="submit" value="Присоединиться"></form>
             {% if user.teacher %}
-                <form method="POST" action="{% url delete meeting.name meeting.moderator_pw %}">{% csrf_token %}<input type="submit" value="End"></form>
+                <form method="POST" action="{% url delete meeting.name meeting.moderator_pw %}">{% csrf_token %}<input type="submit" value="Завершить"></form>
             {% endif %}
         </li>
     {% endfor %}
     </ul>
 {% else %}
-    <p>There are no meetings at the moment.</p>
+    <p>В данный момент нет ни одной созданной видеоконференции.</p>
 {% endif %}
 {% endblock %}
 
 {% block sidebar %}
     {% if user.teacher %}
-        <p><a href="/chat/create/">Create Meeting</a></p>
+        <p><a href="/chat/create/">Создать видеоконференцию</a></p>
     {% endif %}
 {% endblock %}

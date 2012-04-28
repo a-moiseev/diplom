@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.conf.urls.defaults import *
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from bbb.views.core import (home_page, create_meeting, begin_meeting, meetings,
                             join_meeting, delete_meeting)
 
@@ -22,3 +23,5 @@ urlpatterns = patterns('',
         name='delete'),
     url('^help.html$', 'django.views.generic.simple.redirect_to', {'url': 'http://www.bigbluebutton.org/content/videos',}, name='help'),
 )
+
+urlpatterns += staticfiles_urlpatterns()

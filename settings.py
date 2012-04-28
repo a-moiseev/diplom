@@ -163,7 +163,12 @@ DEFAULT_FROM_EMAIL = 'info@google.ru'
 
 #bbb
 SALT = "52eddc04e2bb5a87dd80bc79e7d373f5"
-BBB_API_URL = "http://192.168.1.95/bigbluebutton/api/"
+BBB_API_URL = "http://213.108.214.68/bigbluebutton/api/"
+
+#vk oauth2
+VK_API_ID = "2927796"
+VP_API_KEY = "zkUetePcHBdgZKZVJg5X"
+VP_API_URL = "http://oauth.vk.com/authorize"
 
 #мои глобальные
 TIME_FOR_ST = 30 # минут на одного студента при записи на встречу

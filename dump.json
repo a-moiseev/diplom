@@ -329,6 +329,14 @@
     }
   },
   {
+    "pk": "2780666898e34baf605eda720e81a8ba",
+    "model": "sessions.session",
+    "fields": {
+      "expire_date": "2012-05-12 16:44:32",
+      "session_data": "OTA5OWVjNGM0NzQ1MjZhMTQ4NzNjOTQxODk4NDY3OTdhMGVkY2NkZDqAAn1xAS4=\n"
+    }
+  },
+  {
     "pk": 1,
     "model": "sites.site",
     "fields": {
@@ -1203,6 +1211,18 @@
     }
   },
   {
+    "pk": 6,
+    "model": "project2.event",
+    "fields": {
+      "specialization": null,
+      "series": 1,
+      "date_and_time": "2012-04-29 19:00:00",
+      "endtime": null,
+      "meeting": null,
+      "teacher": 1
+    }
+  },
+  {
     "pk": 4,
     "model": "project2.event",
     "fields": {
@@ -1210,7 +1230,7 @@
       "series": 3,
       "date_and_time": "2012-04-30 19:00:00",
       "endtime": "20:00:00",
-      "meeting": null,
+      "meeting": 12,
       "teacher": 1
     }
   },
@@ -1332,6 +1352,16 @@
       "subject": "\u0417\u0430\u043f\u0440\u043e\u0441",
       "recipient": 4,
       "sender": 2
+    }
+  },
+  {
+    "pk": 12,
+    "model": "bbb.meeting",
+    "fields": {
+      "moderator_password": "22",
+      "attendee_password": "11",
+      "name": "12345",
+      "meeting_id": "12345"
     }
   },
   {
@@ -2019,7 +2049,7 @@
       "is_active": true,
       "is_superuser": true,
       "is_staff": true,
-      "last_login": "2012-04-26 16:15:44",
+      "last_login": "2012-04-28 15:05:20",
       "groups": [],
       "user_permissions": [],
       "password": "sha1$e6172$3f9c72d094f21bb573219594ea2503bf8ffb1bd8",
@@ -2037,7 +2067,7 @@
       "is_active": true,
       "is_superuser": false,
       "is_staff": false,
-      "last_login": "2012-04-26 22:11:51",
+      "last_login": "2012-04-28 15:56:25",
       "groups": [],
       "user_permissions": [],
       "password": "sha1$ab168$2284ae1ddf23643ee0880b2378f5ec0657be89be",
