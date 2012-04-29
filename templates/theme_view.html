@@ -9,12 +9,25 @@
         <p><strong>Дипломник:</strong> <a href="/accounts/profile/{{ student.user.id }}/">{{ student }}</a></p>
     {% endif %}    
     {% if theme.comments %}
-        <p><strong>Комментарии:</strong><br/>
-        {{ theme.comments|linebreaks }}</p>
+        <dt><strong>Комментарии:</strong></dt>
+        <dd>{{ theme.comments|linebreaks }}</dd>
     {% endif %}
     
     {% ifequal user.pk theme.teacher.user.pk %}
-        <a href="/theme/{{theme.id}}/edit/">Редактировать</a>
+        <p><a href="/theme/{{theme.id}}/edit/">Редактировать</a></p>
     {% endifequal %}
+    
+    {% if theme.teacher == user.teacher %}
+        <dt>Исходные данные (для документации):</dt>
+        <dd>{{ theme.initial_data }}</dd>
+        <dt>Содержание работы (для документации):</dt>
+        <dd>{{ theme.contents }}</dd>
+        <dt>Консультанты (для документации):</dt>
+        <dd>{{ theme.consultants }}</dd>
+
+        {% ifequal user.pk theme.teacher.user.pk %}
+            <p><a href="/theme/{{theme.id}}/edit/">Редактировать</a></p>
+        {% endifequal %}
+    {% endif %}
     
 {% endblock %}

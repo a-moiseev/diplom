@@ -37,6 +37,7 @@ urlpatterns = patterns('',
     url(r'^messages/view/(?P<message_id>[\d]+)/spec/$', 'diplom.project2.views.specmsg_view'),
     url(r'^messages/reply/(?P<message_id>[\d]+)/spec/$', 'diplom.project2.views.specmsg_reply'),
     url(r'^messages/choose/(?P<message_id>[\d]+)/spec/$', 'diplom.project2.views.specmsg_choose'),
+    url(r'^messages/delete/(?P<message_id>[\d]+)/spec/$', 'diplom.project2.views.specmsg_decline'),
 
     url(r'^messages/', include('messages.urls')),
     

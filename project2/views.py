@@ -123,6 +123,7 @@ def get_profile(request, user_id = None):
                     student.middle_name = f.cleaned_data["middle_name"]
                     student.semestr = f.cleaned_data["semestr"]
                     student.specialization = f.cleaned_data["specialization"]
+                    student.sex = f.cleaned_data["sex"]
                     #student.month = f.cleaned_data["month"]
                     #student.year = f.cleaned_data["year"]
 
@@ -408,7 +409,8 @@ def specmsg_reply(request, message_id, template_name='messages/reply_spec.html')
     special = parent.special_message
 
     if special.themes:
-        theme_data = special.themes
+        #theme_data = special.themes
+        theme_data = Theme.objects.filter(teacher = teacher)
     else:
         theme_data = Theme.objects.filter(teacher = teacher)
 
@@ -479,6 +481,46 @@ def specmsg_choose(request, message_id):
     else:
         raise Http404
     return HttpResponseRedirect('/')
+
+@login_required
+def specmsg_decline(request, message_id, template_name='messages/reply_spec.html'):
+#отклонение темы
+    user = request.user
+    parent = get_object_or_404(Message, id=message_id)
+    student = get_object_or_404(Student, user=user)
+
+    special = parent.special_message
+
+    if student and (parent.recipient == user):
+        if request.method == "POST":
+            form = StudentSpecialMessageForm(data=request.POST)
+            if form.is_valid():
+                body = form.cleaned_data['comments']
+                if not body:
+                    body = ' '
+
+                msg = Message(subject = u'Тема отклонена', recipient = parent.sender, sender = user, body = body)
+                msg.save()
+
+                spec_msg = Special_message()
+                spec_msg.message = msg
+                spec_msg.save()
+
+                #spec_msg.themes=special.themes
+                #spec_msg.save()
+
+                return HttpResponseRedirect('/')
+        else:
+            form = StudentSpecialMessageForm()
+    else:
+        raise Http404
+
+    tit = "Отмена"
+
+    return render_to_response(template_name, {
+        'tit': tit,
+        'form': form,
+        }, context_instance=RequestContext(request))
 
 """
 CALENDAR
