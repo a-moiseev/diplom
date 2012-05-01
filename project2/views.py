@@ -23,6 +23,8 @@ from pygithub3 import Github
 
 from settings import TIME_FOR_ST, DECANAT_EMAIL
 
+from social_auth.models import UserSocialAuth
+
 """
 # Checks the completeness of current user authentication; complete = logged via VKontakte backend
 def is_complete_authentication(request):
@@ -165,9 +167,6 @@ def get_profile(request, user_id = None):
                               context_instance=RequestContext(request))
     
     return render_to_response('registration/profile.html', {'prof':prof}, context_instance=RequestContext(request))
-
-def new_social_user(request):
-    return render_to_response('registration/profile.html', context_instance=RequestContext(request))
 
 @login_required    
 def theme_add(request):
@@ -1222,8 +1221,4 @@ def git_change_psw(request):
         'tit':tit,
         'form':form,
         'help_text':help_text,
-        }, context_instance=RequestContext(request))
-
-def test_vk(request):
-    return render_to_response('vktest1.html', {
         }, context_instance=RequestContext(request))
