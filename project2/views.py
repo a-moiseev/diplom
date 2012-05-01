@@ -2,7 +2,7 @@
 
 import datetime
 import calendar as pycalendar
-from django.contrib.auth import REDIRECT_FIELD_NAME
+from django.contrib.auth import REDIRECT_FIELD_NAME, BACKEND_SESSION_KEY
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext, Context, Template
 from django.http import Http404, HttpResponseRedirect
@@ -23,6 +23,32 @@ from pygithub3 import Github
 
 from settings import TIME_FOR_ST, DECANAT_EMAIL
 
+"""
+# Checks the completeness of current user authentication; complete = logged via VKontakte backend
+def is_complete_authentication(request):
+    return request.user.is_authenticated() and VKontakteOAuth2Backend.__name__ in request.session.get(BACKEND_SESSION_KEY, '')
+
+def vkontakte_intro(func):
+    def wrapper(request, *args, **kwargs):
+
+        # User must me logged via VKontakte backend in order to ensure we talk about the same person
+        if not is_complete_authentication(request):
+            try:
+
+                social_complete(request, VKontakteOAuth2Backend.name)
+            except (ValueError, AttributeError):
+                pass
+
+        # Need to re-check the completion
+        if is_complete_authentication(request):
+            kwargs.update({'access_token': get_access_token(request.user)})
+        else:
+            request.user = AnonymousUser()
+
+        return func(request, *args, **kwargs)
+
+    return wrapper
+"""
 
 def github_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url='/git/data/'):
     """
@@ -139,6 +165,9 @@ def get_profile(request, user_id = None):
                               context_instance=RequestContext(request))
     
     return render_to_response('registration/profile.html', {'prof':prof}, context_instance=RequestContext(request))
+
+def new_social_user(request):
+    return render_to_response('registration/profile.html', context_instance=RequestContext(request))
 
 @login_required    
 def theme_add(request):
@@ -1195,4 +1224,6 @@ def git_change_psw(request):
         'help_text':help_text,
         }, context_instance=RequestContext(request))
 
-
+def test_vk(request):
+    return render_to_response('vktest1.html', {
+        }, context_instance=RequestContext(request))

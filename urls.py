@@ -70,6 +70,11 @@ urlpatterns = patterns('',
 
     url(r'^chat/', include('bbb.urls')),
 
+    url(r'', include('social_auth.urls')),
+    #url(r'^vk/$', 'diplom.project2.views.test_vk'),
+
+    url(r'^new_social_user/$', 'diplom.project2.new_social_user')
+
 )
 
 urlpatterns += staticfiles_urlpatterns()

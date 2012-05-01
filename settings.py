@@ -136,13 +136,30 @@ INSTALLED_APPS = (
 
     'bbb',
     'gunicorn',
+
+    'social_auth',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.contrib.messages.context_processors.messages",
+    'social_auth.context_processors.social_auth_backends',
 )
 
 # WEBODT
 WEBODT_CONVERTER = 'webodt.converters.abiword.AbiwordODFConverter'
 WEBODT_TEMPLATE_PATH = '/home/sa/djcode/diplom/templates/odtshabl/'
 
+LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/accounts/profile/'
+LOGIN_ERROR_URL = '/accounts/login/'
+
+#social auth
+SOCIAL_AUTH_CREATE_USERS = False
 
 # DJANGO-REGISTRATION
 ACCOUNT_ACTIVATION_DAYS = 2 # кол-во дней для хранения кода активации
@@ -161,6 +178,14 @@ EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False
 DEFAULT_FROM_EMAIL = 'info@google.ru'
 
+
+
+
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.contrib.github.GithubBackend',
+    'social_auth.backends.contrib.vkontakte.VkontakteBackend',
+    'django.contrib.auth.backends.ModelBackend',
+    )
 
 #мои глобальные
 TIME_FOR_ST = 30 # минут на одного студента при записи на встречу

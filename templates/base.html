@@ -22,8 +22,12 @@
 	{% else %}
 		<a href="/accounts/register/">Регистрация</a> | 
 		<a href="/accounts/login/">Вход</a>
+        <br />Войти через
+        {% for backend in social_auth.backends %}
+            <a href="{% url socialauth_begin backend %}">{{ backend }}</a>
+        {% endfor %}
 	{% endif %}</p>
-	
+
 	<h1>Портал Управления Дипломными Проектами</h1>
 	
 	<div id="menu">
@@ -56,27 +60,38 @@
 	</div>
 
 	<div id="aside">
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                {% endfor %}
+            </ul>
+            <hr />
+        {% endif %}
+
         {% if user.student %}
             {% if not user.student.github.id %}
                 <p><a href="/git/data/">Нет доступа к GitHub</a></p>
             {% endif %}
         {% endif %}
+
         {% if user.teacher %}
             {% if not user.teacher.github.id %}
                 <p><a href="/git/data/">Нет доступа к GitHub</a></p>
             {% endif %}
         {% endif %}
 
+        {% if user.is_authenticated and social_auth.not_associated %}
+            <p>Нет ассоциации с:</p>
+            <ul>
+            {% for backend in social_auth.not_associated %}
+                <li><a href="{% url socialauth_begin backend %}">{{ backend }}</a></li>
+            {% endfor %}
+            </ul>
+            <hr />
+        {% endif %}
 
 		{% block sidebar %}
-            {% if messages %}
-                <ul class="messages">
-                    {% for message in messages %}
-                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                    {% endfor %}
-                </ul>
-                <hr />
-            {% endif %}
 		{% endblock %}
 	</div>
 
