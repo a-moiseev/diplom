@@ -1,6 +1,24 @@
 {% extends "base.html" %}
+{% load adminmedia %}
 
 {% block title %}{{ tit }}{% endblock %}
+
+{% block extra_head %}
+    <script type="text/javascript" src="/my_admin/jsi18n/"></script>
+    <script type="text/javascript" src="/static/admin/js/core.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css"/>
+    <!--
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/global.css"/>
+    -->
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/widgets.css"/>
+
+    {{ form.media }}
+
+    <script type="text/javascript">
+        window.__admin_media_prefix__ = "{% filter escapejs %}{% admin_media_prefix %}{% endfilter %}";
+    </script>
+{% endblock %}
 
 {% block content %}
 <h1>{{ tit }}</h1>

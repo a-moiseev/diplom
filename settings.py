@@ -46,18 +46,18 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = '/home/sa/djcode/diplom/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = '/home/sa/djcode/diplom/static/'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -178,6 +178,15 @@ EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False
 DEFAULT_FROM_EMAIL = 'info@google.ru'
 
+#bbb
+SALT = "52eddc04e2bb5a87dd80bc79e7d373f5"
+BBB_API_URL = "http://213.108.214.68/bigbluebutton/api/"
+
+#oauth2
+VK_APP_ID = '2927796'
+VK_API_SECRET = 'zkUetePcHBdgZKZVJg5X'
+GITHUB_APP_ID = '53bd6414869f9a9c5414'
+GITHUB_API_SECRET = 'b5a017c9b6c0f2db788d26389bed3f57e93eb2de'
 
 AUTHENTICATION_BACKENDS = (
     'social_auth.backends.contrib.github.GithubBackend',

@@ -4,6 +4,8 @@ from django import forms
 from django.forms.extras.widgets import SelectDateWidget
 from django.forms import ModelForm
 
+from django.contrib.admin.widgets import AdminDateWidget, AdminTimeWidget, AdminSplitDateTime
+
 from diplom.project2.models import *
 
 import datetime
@@ -96,7 +98,9 @@ class EventAddForm(ModelForm):
         fields = ('series', 'date_and_time', 'endtime')
         widgets = {
             'series': forms.Select(),
-            'date_and_time': forms.SplitDateTimeWidget()
+            #'date_and_time': forms.SplitDateTimeWidget(),
+            'date_and_time': AdminSplitDateTime(),
+            'endtime': AdminTimeWidget(),
         }
 
 class SuperEventAddForm(ModelForm):
@@ -139,4 +143,13 @@ class GitHubPasswordForm(ModelForm):
         model = GitHubAccount
         fields = ('password',)
         widgets = {'password': forms.PasswordInput()}
+
+class MyModelMultipleChoiceField(forms.ModelMultipleChoiceField):
+    def label_from_instance(self, obj):
+        return u'%s <%s>' % (obj.username, obj.get_full_name())
+
+class NewComposeForm(forms.Form):
+    recipient = MyModelMultipleChoiceField(queryset=User.objects.all(),
+        widget=forms.SelectMultiple(),
+        label=(u"Recipient"))
 

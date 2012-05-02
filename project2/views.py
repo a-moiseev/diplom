@@ -78,7 +78,7 @@ def get_us_profile(us):
     return None
 
 def user_student(us):
-# принимает объект user, возвращает студент или None 
+# принимает объект user, возвращает студент или None
     try:
         return Student.objects.get(user = us)
     except:
@@ -131,7 +131,7 @@ def get_profile(request, user_id = None):
     else:
         user = User.objects.get(username = request.user.username)
         prof = get_us_profile(user)
-    
+
         if not prof:
             # если нет профайла
             if request.method == "POST":
@@ -143,7 +143,7 @@ def get_profile(request, user_id = None):
                     user.first_name = f.cleaned_data["first_name"]
                     user.last_name = f.cleaned_data["last_name"]
                     user.save()
-                    
+
                     student=Student()
                     student.user = user
                     student.birthday = f.cleaned_data["birthday"]
@@ -156,27 +156,27 @@ def get_profile(request, user_id = None):
                     #student.year = f.cleaned_data["year"]
 
                     student.save()
-                    
+
                     prof = get_us_profile(user)
-                    
+
                     return render_to_response('registration/profile.html', {'prof':prof},
                                               context_instance=RequestContext(request))
-                
+
             f = StudentProfileForm()
             return render_to_response('registration/create_student_profile.html', {'form':f},
                               context_instance=RequestContext(request))
-    
+
     return render_to_response('registration/profile.html', {'prof':prof}, context_instance=RequestContext(request))
 
-@login_required    
+@login_required
 def theme_add(request):
     user = User.objects.get(username = request.user.username)
-  
+
     try:
         prof = Teacher.objects.get(user = user)
     except:
         raise Http404
-    
+
     if request.method == "POST":
         teacher = Theme(teacher = prof)
         f = ThemeForm(request.POST, instance=teacher)
@@ -185,23 +185,23 @@ def theme_add(request):
         else:
             f.save()
             return HttpResponseRedirect(reverse('diplom.project2.views.get_profile'))
-    
+
     f = ThemeForm()
     return render_to_response('theme_add.html', {'form':f}, context_instance=RequestContext(request))
 
-@login_required    
+@login_required
 def theme_edit(request, theme_id):
     user = User.objects.get(username = request.user.username)
-    
+
     try:
         theme = Theme.objects.get(id=theme_id)
         prof = Teacher.objects.get(user = user)
     except:
         raise Http404
-    
+
     if prof != theme.teacher:
         raise Http404
-    
+
     if request.method == "POST":
         f = ThemeForm(request.POST, instance=theme)
         if not f.is_valid():
@@ -209,28 +209,28 @@ def theme_edit(request, theme_id):
         else:
             f.save()
             return HttpResponseRedirect(reverse('diplom.project2.views.get_profile'))
-       
+
     f = ThemeForm(instance = theme)
     return render_to_response('theme_add.html', {'form':f}, context_instance=RequestContext(request))
 
-@login_required    
+@login_required
 def theme_view(request, theme_id):
     theme = get_object_or_404(Theme, id = theme_id)
     student = theme.student_set.all()
     if student:
         student = student[0]
-    
+
     return render_to_response('theme_view.html', {'theme':theme, 'student':student,}, context_instance=RequestContext(request))
 
-@login_required    
+@login_required
 def interest_add(request):
     user = User.objects.get(username = request.user.username)
-  
+
     try:
         prof = Teacher.objects.get(user = user)
     except:
         raise Http404
-    
+
     if request.method == "POST":
         teacher = Interest(teacher = prof)
         f = InterestForm(request.POST, instance = teacher)
@@ -239,7 +239,7 @@ def interest_add(request):
         else:
             f.save()
             return HttpResponseRedirect(reverse('diplom.project2.views.get_profile'))
-    
+
     f = InterestForm()
     return render_to_response('interest_add.html', {'form':f}, context_instance=RequestContext(request))
 
@@ -247,7 +247,7 @@ def interest_add(request):
 def teachers(request):
 #выбор студентом темы и/или интересов
     user = User.objects.get(username = request.user.username)
-    
+
 #только студент
     try:
         prof = Student.objects.get(user = user)
@@ -259,7 +259,7 @@ def teachers(request):
     teachers = Teacher.objects.all()
 
     teacher_forms = []
-    
+
     for teacher in teachers:
         one_teacher = {'teacher':teacher, 'form':None}
         interests = Interest.objects.filter(teacher = teacher)
@@ -269,22 +269,22 @@ def teachers(request):
                 themes.append(t)
         form = StudentRequestForm(interests_data = interests, theme_data = themes)
         one_teacher['form'] = form
-        
+
         teacher_forms.append(one_teacher)
-    
+
     return render_to_response('teachers.html', {'teacher_forms':teacher_forms},
                               context_instance=RequestContext(request))
 
-@login_required    
+@login_required
 def teachers_request(request, user_id):
 #отправка запроса тичеру
     try:
         teacher = Teacher.objects.get(user = User.objects.get(id=user_id))
     except:
         raise Http404
-    
+
     user = User.objects.get(username = request.user.username)
-    
+
 #только студент
     try:
         prof = Student.objects.get(user = user)
@@ -292,7 +292,7 @@ def teachers_request(request, user_id):
             raise Http404
     except:
         raise Http404
-    
+
     interests = Interest.objects.filter(teacher = teacher)
     #themes = Theme.objects.filter(teacher = teacher)
     themes = []
@@ -300,7 +300,7 @@ def teachers_request(request, user_id):
         if not t.student_set.count():
             themes.append(t)
     form = StudentRequestForm(data=request.POST, interests_data = interests, theme_data = themes)
-    
+
     interests_req = []
     themes_req = []
     for k in form.data.keys():
@@ -309,30 +309,30 @@ def teachers_request(request, user_id):
         elif k[:4] == 'the_':
             themes_req.append(Theme.objects.get(id = str(k[4:])))
 
-    
+
     if interests_req.__len__() == 0 and themes_req.__len__() == 0:
         return HttpResponseRedirect(reverse('diplom.project2.views.teachers'))
-    
+
     request.session['interests_req'] = interests_req
     request.session['themes_req'] = themes_req
-    
+
     form2 = StudentSpecialMessageForm()
-    
+
     return render_to_response('teachers_test.html',
                               {'teacher':teacher, 'interests_req':interests_req,
                                'themes_req':themes_req, 'form2':form2},
                               context_instance=RequestContext(request))
 
-@login_required    
+@login_required
 def teachers_send_request(request, user_id):
 #отправка запроса тичеру
     try:
         teacher = Teacher.objects.get(user = User.objects.get(id=user_id))
     except:
         raise Http404
-    
+
     user = User.objects.get(username = request.user.username)
-    
+
 #только студент
     try:
         prof = Student.objects.get(user = user)
@@ -340,28 +340,28 @@ def teachers_send_request(request, user_id):
             raise Http404
     except:
         raise Http404
-      
+
     if request.method == "POST":
         interests = request.session['interests_req']
         themes = request.session['themes_req']
-        
+
         del request.session['interests_req']
         del request.session['themes_req']
-        
+
         if (not themes) and (not interests):
             return HttpResponseRedirect(reverse('diplom.project2.views.teachers'))
-        
+
         form2 = StudentSpecialMessageForm(request.POST)
-        
+
         if form2.is_valid():
             body = form2.cleaned_data['comments']
             if not body:
                 body = ' '
-                
+
             msg = Message(subject = u'Запрос', recipient = teacher.user, sender = user, body = body)
-    
-            msg.save()  
-            
+
+            msg.save()
+
             spec_msg = Special_message()
             spec_msg.message = msg
             spec_msg.save()
@@ -370,29 +370,29 @@ def teachers_send_request(request, user_id):
             spec_msg.themes = themes
 
             spec_msg.save()
-            
+
             return HttpResponseRedirect('/')
         else:
             return HttpResponseRedirect('/teachers/request/%s/' % user_id)
     else:
         return HttpResponseRedirect(reverse('diplom.project2.views.teachers'))
-        
-@login_required 
+
+@login_required
 def specmsg_view(request, message_id):
     """
     доработанный message.view
-    
+
     Shows a single message.``message_id`` argument is required.
-    The user is only allowed to see the message, if he is either 
+    The user is only allowed to see the message, if he is either
     the sender or the recipient. If the user is not allowed a 404
-    is raised. 
-    If the user is the recipient and the message is unread 
+    is raised.
+    If the user is the recipient and the message is unread
     ``read_at`` is set to the current datetime.
     """
     user = request.user
     now = datetime.datetime.now()
     message = get_object_or_404(Message, id=message_id)
-    
+
     if (message.sender != user) and (message.recipient != user):
         raise Http404
     if message.read_at is None and message.recipient == user:
@@ -400,7 +400,7 @@ def specmsg_view(request, message_id):
         message.save()
 
     special = message.special_message
-    
+
     student = user_student(user)
     if student and (message.recipient == user):
         theme = special.themes.all()[0]
@@ -414,23 +414,23 @@ def specmsg_view(request, message_id):
         'special': special,
     }, context_instance=RequestContext(request))
 
-@login_required 
+@login_required
 def specmsg_reply(request, message_id, template_name='messages/reply_spec.html'):
     """
     доработанный message.view
-    
+
     Shows a single message.``message_id`` argument is required.
-    The user is only allowed to see the message, if he is either 
+    The user is only allowed to see the message, if he is either
     the sender or the recipient. If the user is not allowed a 404
-    is raised. 
-    If the user is the recipient and the message is unread 
+    is raised.
+    If the user is the recipient and the message is unread
     ``read_at`` is set to the current datetime.
     """
     user = request.user
     teacher = get_object_or_404(Teacher, user=user)
     now = datetime.datetime.now()
     parent = get_object_or_404(Message, id=message_id)
-    
+
     if parent.recipient != user:
         raise Http404
 
@@ -449,18 +449,18 @@ def specmsg_reply(request, message_id, template_name='messages/reply_spec.html')
             if not body:
                 body = ' '
             theme = form.cleaned_data['theme']
-                
+
             msg = Message(subject = u'Тема', recipient = parent.sender, sender = user, body = body)
-    
-            msg.save()  
-            
+
+            msg.save()
+
             spec_msg = Special_message()
             spec_msg.message = msg
             spec_msg.save()
-            
+
             spec_msg.themes.add(theme)
             spec_msg.save()
-            
+
             return HttpResponseRedirect('/')
         else:
             return HttpResponseRedirect('/messages/')
@@ -577,7 +577,7 @@ def calendar(request, year, month, series_id=None):
 
     my_year = int(year)
     my_month = int(month)
-    
+
     my_calendar_from_month = datetime(my_year, my_month, 1)
     my_calendar_to_month = datetime(my_year, my_month, monthrange(my_year, my_month)[1])
 
@@ -618,20 +618,20 @@ END CALENDAR
 
 @login_required
 def schedule(request, year=None, month=None):
-    
+
     user = request.user
     prof = get_us_profile(user)
-    
+
     now = datetime.date.today()
-    
+
     if year == None:
         year = now.year
     year = int(year)
-        
+
     if month == None:
         month = now.month
     month = int(month)
-        
+
     if month == 0:
         year = year-1
         month = 12
@@ -640,13 +640,13 @@ def schedule(request, year=None, month=None):
         year = year+1
         month = 1
         return HttpResponseRedirect('/schedule/%s/%s/' % (year, month))
-    
+
     last_day = pycalendar.monthrange(year, month)[1]
-    
+
     event_list = []
     event_month = Event.objects.filter(date_and_time__gte = (datetime.datetime(year,month,1,0,0))).filter(date_and_time__lte=(datetime.datetime(year,month,last_day,23,59)))
     stage_month = Stage.objects.filter(date_and_time__gte = (datetime.datetime(year,month,1,0,0))).filter(date_and_time__lte=(datetime.datetime(year,month,last_day,23,59)))
-    
+
     try:
         if user.student:
             # студенту показать только все event.series.id=1
@@ -666,7 +666,7 @@ def schedule(request, year=None, month=None):
             event_list += list(stage_month)
     except:
         pass
-    
+
     try:
         if user.teacher:
             # teacher'у только его встречи
@@ -675,21 +675,21 @@ def schedule(request, year=None, month=None):
             event_list += list(event_month.filter(teacher = None))
     except:
         pass
-    
+
     return render_to_response('schedule.html', {
         'year':year,
         'month':month,
         "event_list":event_list
         }, context_instance=RequestContext(request))
 
-@login_required    
+@login_required
 def event_view(request, event_id):
     #
     #time_for_st = 30 # минут на одного студента
-    # 
-     
+    #
+
     event = get_object_or_404(Event, id=int(event_id))
-    
+
     event_students = event.eventstudent_set.all()
 
     """
@@ -706,7 +706,7 @@ def event_view(request, event_id):
         del request.session['event_join_error']
     except:
         pass
-    
+
     return render_to_response('event_view.html', {
         "errors":event_errors,
         "event":event,
@@ -720,34 +720,34 @@ def event_join(request, event_id):
     # запись на встречу
 
     event = get_object_or_404(Event, id=int(event_id))
-    
+
     user = request.user
-    
+
     #только студент
     student = get_object_or_404(Student, user=user)
-    
+
     if event.eventstudent_set.all().filter(student = student):
         request.session['event_join_error'] = u'Вы уже записаны!'
         return HttpResponseRedirect('/event/%s/' % event.id)
-    
+
     num = event.eventstudent_set.count()
     if (event.date_and_time + datetime.timedelta(minutes=(TIME_FOR_ST*num))).time() > event.endtime:
         request.session['event_join_error'] = u'Всё уже занято!'
         return HttpResponseRedirect('/event/%s/' % event.id)
-    
+
     eventstudent = EventStudent(
         event=event,
         date=event.date_and_time.date(),
         time=(event.date_and_time + datetime.timedelta(minutes=(TIME_FOR_ST*num))).time(),
         student = student)
     eventstudent.save()
-        
+
     return HttpResponseRedirect('/event/%s/' % event.id)
 
 @login_required
 def event_add(request):
     #добавить встречу
-    
+
     user = request.user
     #только тичер
     prof = get_object_or_404(Teacher, user=user)
@@ -762,9 +762,9 @@ def event_add(request):
             return HttpResponseRedirect('/schedule/')
     else:
         form = EventAddForm()
-    
+
     tit = u'Добавление встречи'
-    
+
     return render_to_response('form.html', {
         'tit':tit,
         'form':form,
@@ -797,13 +797,13 @@ def super_event_add(request):
 def event_add_student(request, event_id):
     #преподаватель добавляет студента к встрече
     #для очной встречи или встречи в чате
-    
+
     event = get_object_or_404(Event, id=int(event_id))
-    
+
     user = request.user
     #только тичер
     prof = get_object_or_404(Teacher, user = user)
-   
+
     if request.method == "POST":
         event_num = EventStudent(
             event=event,
@@ -816,9 +816,9 @@ def event_add_student(request, event_id):
             return HttpResponseRedirect('/schedule/')
     else:
         form = EventAddStudentForm()
-        
+
     tit = u'Назначить встречу студенту'
-    
+
     return render_to_response('form.html', {
         'tit':tit,
         'form':form,
@@ -1221,4 +1221,62 @@ def git_change_psw(request):
         'tit':tit,
         'form':form,
         'help_text':help_text,
+        }, context_instance=RequestContext(request))
+
+@login_required
+def messages_compose_choose(request, recipients=None):
+    user = request.user
+
+    if request.method == "POST":
+        form = NewComposeForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data['recipient']
+            recip=u''
+            if data:
+                for u in data:
+                    recip += u.username + '+'
+            return HttpResponseRedirect('/messages/compose/%s' % recip)
+    else:
+        if recipients == 'all':
+            #only teacher
+            get_object_or_404(Teacher, user=request.user)
+
+            form = NewComposeForm(initial={'recipient':User.objects.all()})
+        elif recipients == 'allstudents':
+            #only teacher
+            get_object_or_404(Teacher, user=request.user)
+
+            form_initial=[]
+            for s in Student.objects.all():
+                form_initial.append(s.user)
+            form = NewComposeForm(initial={'recipient':form_initial})
+        elif recipients == 'allteachers':
+            #only teacher
+            get_object_or_404(Teacher, user=request.user)
+
+            form_initial=[]
+            for t in Teacher.objects.all():
+                form_initial.append(t.user)
+            form = NewComposeForm(initial={'recipient':form_initial})
+        elif recipients == 'mystudents':
+            #only teacher
+            teacher = get_object_or_404(Teacher, user=user)
+
+            form_initial=[]
+            for s in get_diplomniks(teacher):
+                form_initial.append(s.user)
+            form = NewComposeForm(initial={'recipient':form_initial})
+        elif recipients == 'teacher':
+            student = get_object_or_404(Student, user=user)
+
+            tch = student.theme.teacher
+            form = NewComposeForm(initial={'recipient':tch.user})
+        else:
+            form = NewComposeForm()
+
+    tit=u'Select Recipients'
+
+    return render_to_response('selectrecipients.html', {
+        'tit':tit,
+        'form':form,
         }, context_instance=RequestContext(request))

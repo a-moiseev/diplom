@@ -154,10 +154,10 @@ class Serie(models.Model):
     
 class Event(models.Model):
     series = models.ForeignKey(Serie, verbose_name=u'Вид встречи')
-    date_and_time = models.DateTimeField(help_text=u'Дата в формате YYYY-MM-DD, время в формате HH:MM', verbose_name=u'Дата и время начала') #начало
+    date_and_time = models.DateTimeField(verbose_name=u'Дата и время начала') #начало
     #date = models.DateField()
     #starttime = models.TimeField()
-    endtime = models.TimeField(null=True, blank=True, verbose_name=u'Конец встречи (время)', help_text=u'Время в формате HH:MM') #конец встречи
+    endtime = models.TimeField(null=True, blank=True, verbose_name=u'Конец встречи (время)') #конец встречи
     
     teacher = models.ForeignKey(Teacher, null=True, blank=True) #защита/предзащита =null
 

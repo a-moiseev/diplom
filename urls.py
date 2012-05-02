@@ -4,10 +4,6 @@ from registration.forms import RegistrationFormUniqueEmail
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-from diplom.project2.composeform import NewComposeForm
-from messages.views import compose
-
-
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
@@ -42,7 +38,8 @@ urlpatterns = patterns('',
     url(r'^messages/choose/(?P<message_id>[\d]+)/spec/$', 'diplom.project2.views.specmsg_choose'),
     url(r'^messages/delete/(?P<message_id>[\d]+)/spec/$', 'diplom.project2.views.specmsg_decline'),
 
-    url(r'^messages/compose/$', compose, {'form_class': NewComposeForm,}, name='messages_compose'),
+    url(r'^messages/compose/choose/$', 'diplom.project2.views.messages_compose_choose'),
+    url(r'^messages/compose/choose/(?P<recipients>[\w]+)/$', 'diplom.project2.views.messages_compose_choose'),
     url(r'^messages/', include('messages.urls')),
     
     #url(r'^chat/', include('jqchat.urls')),
@@ -75,6 +72,8 @@ urlpatterns = patterns('',
     url(r'^chat/', include('bbb.urls')),
 
     url(r'', include('social_auth.urls')),
+
+    url(r'^my_admin/jsi18n', 'django.views.i18n.javascript_catalog'),
 )
 
 urlpatterns += staticfiles_urlpatterns()
