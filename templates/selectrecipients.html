@@ -6,13 +6,13 @@
 <h1>{{ tit }}</h1>
 
 {% if user.teacher %}
-    <p><a href="/messages/compose/choose/allstudents/">All students</a></p>
-    <p><a href="/messages/compose/choose/mystudents/">My students</a></p>
-    <p><a href="/messages/compose/choose/allteachers/">All teachers</a></p>
-    <p><a href="/messages/compose/choose/all/">All</a></p>
+    <p><a href="/messages/compose/choose/allstudents/">Все дипломники</a></p>
+    <p><a href="/messages/compose/choose/mystudents/">Мои дипломники</a></p>
+    <p><a href="/messages/compose/choose/allteachers/">Все руководители</a></p>
+    <p><a href="/messages/compose/choose/all/">Все</a></p>
 {% endif %}
 {% if user.student %}
-    <p><a href="/messages/compose/choose/teacher/">Teacher</a></p>
+    <p><a href="/messages/compose/choose/teacher/">Руководитель</a></p>
 {% endif %}
     
 <form method="post">

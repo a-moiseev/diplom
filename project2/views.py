@@ -1269,12 +1269,12 @@ def messages_compose_choose(request, recipients=None):
         elif recipients == 'teacher':
             student = get_object_or_404(Student, user=user)
 
-            tch = student.theme.teacher
-            form = NewComposeForm(initial={'recipient':tch.user})
+            us = [student.theme.teacher.user]
+            form = NewComposeForm(initial={'recipient':us})
         else:
             form = NewComposeForm()
 
-    tit=u'Select Recipients'
+    tit=u'Выбор получателей'
 
     return render_to_response('selectrecipients.html', {
         'tit':tit,

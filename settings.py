@@ -178,15 +178,6 @@ EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False
 DEFAULT_FROM_EMAIL = 'info@google.ru'
 
-#bbb
-SALT = "52eddc04e2bb5a87dd80bc79e7d373f5"
-BBB_API_URL = "http://213.108.214.68/bigbluebutton/api/"
-
-#oauth2
-VK_APP_ID = '2927796'
-VK_API_SECRET = 'zkUetePcHBdgZKZVJg5X'
-GITHUB_APP_ID = '53bd6414869f9a9c5414'
-GITHUB_API_SECRET = 'b5a017c9b6c0f2db788d26389bed3f57e93eb2de'
 
 AUTHENTICATION_BACKENDS = (
     'social_auth.backends.contrib.github.GithubBackend',

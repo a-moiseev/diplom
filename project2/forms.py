@@ -151,5 +151,5 @@ class MyModelMultipleChoiceField(forms.ModelMultipleChoiceField):
 class NewComposeForm(forms.Form):
     recipient = MyModelMultipleChoiceField(queryset=User.objects.all(),
         widget=forms.SelectMultiple(),
-        label=(u"Recipient"))
+        label=(u"Получатели"))
 
