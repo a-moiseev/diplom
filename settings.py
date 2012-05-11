@@ -138,6 +138,8 @@ INSTALLED_APPS = (
     'gunicorn',
 
     'social_auth',
+
+    #'notification',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -177,6 +179,7 @@ EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False
 DEFAULT_FROM_EMAIL = 'info@google.ru'
+
 
 
 AUTHENTICATION_BACKENDS = (

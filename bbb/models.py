@@ -98,7 +98,7 @@ class Meeting(models.Model):
         hashed = self.api_call(query, call)
         url = settings.BBB_API_URL + call + '?' + hashed
         result = parse(urlopen(url).read())
-        if result:
+        if len(result):
             # Create dict of values for easy use in template
             d = []
             r = result[1].findall('meeting')
