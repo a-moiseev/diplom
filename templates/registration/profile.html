@@ -80,6 +80,37 @@
         <p align="right"><a href='{{ site }}/theme/add/'>Добавить тему</a></p>
     {% endif %}
 
+    {% if stages %}
+        <h2>Этапы</h2>
+
+        <table>
+            {% for stagepass in stages %}
+                <tr>
+                {% if stagepass.stage_pass %}
+                    <td>{{ stagepass.stage.date|date:"d.m.Y" }}</td>
+                    <td>{{ stagepass.stage.name }}</td>
+                    <td>Пройден</td>
+                {% else %}
+                    <td>{{ stagepass.stage.date|date:"d.m.Y" }}</td>
+                    <td>{{ stagepass.stage.name }}</td>
+                    {% if user.teacher %}
+                        {% if prof.theme.teacher == user.teacher  %}
+                            <td>
+                            <form method="POST" action="{% url stage_pass prof.user_id stagepass.id %}">{% csrf_token %}<input type="submit" value="Прошел"></form>
+                            </td>
+                        {% else %}
+                            <td>---</td>
+                        {% endif %}
+                    {% else %}
+                        <td>---</td>
+                    {% endif %}
+                {% endif %}
+                </tr>
+            {% endfor %}
+        </table>
+
+    {% endif %}
+
 {% endblock %}
 
 {% block sidebar %}

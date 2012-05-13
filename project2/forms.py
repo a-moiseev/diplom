@@ -67,6 +67,7 @@ class StudentRequestForm(forms.Form):
 class StudentSpecialMessageForm(forms.Form):
     comments = forms.CharField(widget=forms.Textarea(attrs={'cols': 70, 'rows': 20}), label=u'Текст сообщения', required=False)
 
+
 class ReplySpecialMessageForm(forms.Form):
     theme = forms.ModelChoiceField(queryset = Theme.objects.none, label=u'Тема')
     comments = forms.CharField(widget=forms.Textarea(attrs={'cols': 70, 'rows': 20}), label=u'Текст сообщения', required=False)
@@ -124,13 +125,14 @@ class EventAddStudentsForm(forms.Form):
         widget=forms.SelectMultiple,
         label=u'Студенты:', required=True)
 
+"""
 class ScoreForm(ModelForm):
     class Meta:
         model=Stage
         #exclude = ('event', 'number')
         fields = ('score',)
         widgets = {'score': forms.Select()}
-
+"""
 
 class GitHubAccountForm(ModelForm):
     class Meta:
@@ -144,6 +146,11 @@ class GitHubPasswordForm(ModelForm):
         fields = ('password',)
         widgets = {'password': forms.PasswordInput()}
 
+class DiplomaName(forms.Form):
+    name = forms.RegexField(regex=r'^[\w]+$', max_length=100,
+        label='Имя репозитория',
+        error_message='Можете использовать латинские символы, цифры и символ подчеркивания')
+
 class MyModelMultipleChoiceField(forms.ModelMultipleChoiceField):
     def label_from_instance(self, obj):
         return u'%s <%s>' % (obj.username, obj.get_full_name())
@@ -153,3 +160,12 @@ class NewComposeForm(forms.Form):
         widget=forms.SelectMultiple(),
         label=(u"Получатели"))
 
+class StageAdd(ModelForm):
+    class Meta:
+        model = Stage
+        fields = ('name', 'date', 'specialization')
+        widgets = {
+            'name': forms.Select(),
+            'date': AdminDateWidget(),
+            'specialization': forms.Select(),
+            }

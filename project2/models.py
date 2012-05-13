@@ -6,21 +6,6 @@ from messages.models import Message
 
 from bbb.models import Meeting
 
-SCORE_CHOICES = {
-    (1, '1'),
-    (2, '2'),
-    (3, '3'),
-    (4, '4'),
-    (5, '5'),
-}
-
-"""
-def make_upload_path(instance, filename):
-    #Generates upload path for FileField
-    user = User.objects.get(username=request.user.username)
-    return u"uploads/%s/%s" % (user.id, filename)
-"""
-
 class GitHubAccount(models.Model):
     username = models.CharField(max_length=30, blank=True, verbose_name="Логин")
     password = models.CharField(max_length=30, blank=True, verbose_name="Пароль")
@@ -123,13 +108,6 @@ class Special_message(models.Model):
     message = models.OneToOneField(Message)
     themes = models.ManyToManyField(Theme, null=True, blank=True)
     interests = models.ManyToManyField(Interest, null=True, blank=True)
-    """
-    MSG_TYPE_CHOICES = (
-        ('req', 'Request'),
-        ('rep', 'Reply'),
-        )
-    message_type = models.CharField(max_length=1, choices=MSG_TYPE_CHOICES)
-    """
     
 class Serie(models.Model):
     """
@@ -139,7 +117,6 @@ class Serie(models.Model):
 
     videoconf id=3!!!!!!
 
-    также защита, предзащита
     """
 
     primary_name = models.CharField(max_length=20)
@@ -189,37 +166,33 @@ class EventStudent(models.Model):
     class Meta:
         ordering=["date","time"]
 
-class Stage(models.Model):
-    # deadlin'ы
-
-    name = models.ForeignKey(Serie)
-    student = models.ForeignKey(Student)
-
-    date_and_time = models.DateTimeField(verbose_name=u'Дата и время')
-
-    score = models.SmallIntegerField(null=True, blank=True, max_length=1, choices=SCORE_CHOICES, verbose_name=u'Оценка')
+class StageName(models.Model):
+    name = models.CharField(max_length=50)
 
     def __unicode__(self):
-        return u'%s. %s' % (self.name.__unicode__(), self.student.__unicode__())
+        return self.name
 
     class Meta:
-        ordering=["date_and_time"]
+        ordering=["name"]
 
-# позже, работа с файлами
-"""class Upload(models.Model):
-    user = models.ForeignKey(User)
-    file = models.FileField(upload_to=make_upload_path)
-    category = models.ForeignKey(Category)
-    uploaded_date = models.DateTimeField(auto_now_add=True)
+class Stage(models.Model):
+    # deadlin'ы
+    name = models.ForeignKey(StageName, verbose_name=u'Этап')
+    date = models.DateTimeField(verbose_name=u'Дата')
 
-class Material(models.Model):
+    specialization = models.ForeignKey(Specialization, blank=True, null=True, verbose_name=u'Направление')
+
+    def __unicode__(self):
+        return u'%s. %s' % (self.name.__unicode__(), self.date.strftime('%d.%m.%Y'))
+
+    class Meta:
+        ordering=["date"]
+
+class StagePass(models.Model):
+    stage = models.ForeignKey(Stage)
     student = models.ForeignKey(Student)
-    name = models.CharField(max_length = 100)
-    docfile = models.FileField(upload_to = make_upload_path)
-    uploaded_date = models.DateTimeField(auto_now = True)
-    
-class Project(models.Model):
-    student = models.ForeignKey(Student)
-    name = models.CharField(max_length = 100)
-    prfile = models.FileField(upload_to = make_upload_path)
-"""
+
+    stage_pass = models.BooleanField(default=False)
+
+    def __unicode__(self):
+        return u'%s. %s' % (self.student.__unicode__(), self.stage.__unicode__())

@@ -117,6 +117,32 @@ def get_diplomniks(tch):
             dp.append(t.student_set.all()[0])
     return dp
 
+def get_stages(user):
+    prof = get_us_profile(user)
+    if user_student(user) and prof.diplomnik and prof.year:
+        if prof.month == u'январь':
+            last_month = 2
+            first_month = 9
+            init_year = prof.year-1
+        else:
+            last_month = 7
+            first_month = 2
+            init_year = prof.year
+
+        stages=Stage.objects.filter(specialization=prof.specialization).\
+            filter(date__lte=datetime.date(prof.year, last_month, pycalendar.monthrange(prof.year, last_month)[1])).\
+            filter(date__gte=datetime.date(init_year, first_month, 1))
+
+        stagep = []
+        for stage in stages:
+            sp, created = StagePass.objects.get_or_create(stage=stage, student=prof)
+            stagep.append(sp)
+
+    else:
+        stagep=None
+
+    return stagep
+
 def main(request):
     return HttpResponseRedirect(reverse('diplom.project2.views.get_profile'))
 
@@ -166,7 +192,14 @@ def get_profile(request, user_id = None):
             return render_to_response('registration/create_student_profile.html', {'form':f},
                               context_instance=RequestContext(request))
 
-    return render_to_response('registration/profile.html', {'prof':prof}, context_instance=RequestContext(request))
+    stages = get_stages(user)
+
+    return render_to_response('registration/profile.html',
+            {
+            'prof':prof,
+            'stages':stages
+            },
+            context_instance=RequestContext(request))
 
 @login_required
 def theme_add(request):
@@ -482,33 +515,45 @@ def specmsg_choose(request, message_id):
     message = get_object_or_404(Message, id=message_id)
     student = user_student(user)
     if student and (message.recipient == user):
-        special = message.special_message
-        theme = special.themes.all()[0]
-        student.theme = theme
-        student.diplomnik = True
-        student.save()
+        form = DiplomaName(request.POST or None)
+        if form.is_valid():
+            reponame = form.cleaned_data['name']
 
-        #create repo
-        gh=get_gh_login(user)
-        if not gh:
-            raise Http404
+            special = message.special_message
+            theme = special.themes.all()[0]
+            student.theme = theme
+            student.diplomnik = True
+            student.save()
 
-        reponame = 'Diploma' #!!!!!!!!!!!!!!!!!!!!!!
-        student.github.reponame = reponame
-        student.github.save()
+            #create repo
+            gh=get_gh_login(user)
+            if not gh:
+                raise Http404
 
-        gh.repos.create({'name':reponame, 'description':theme.name})
+            #reponame = 'Diploma' #!!!!!!!!!!!!!!!!!!!!!!
+            student.github.reponame = reponame
+            student.github.save()
 
-        """
-        # ?????????????? 411 error
-        if theme.teacher.github_id:
-            gh.repos.collaborators.add(theme.teacher.github.username,
-                user=student.github.username,
-                repo=student.github.reponame)
-        """
+            gh.repos.create({'name':reponame, 'description':theme.name})
+
+            """
+            # ?????????????? 411 error
+            if theme.teacher.github_id:
+                gh.repos.collaborators.add(theme.teacher.github.username,
+                    user=student.github.username,
+                    repo=student.github.reponame)
+            """
+            return HttpResponseRedirect('/')
+
+        tit = u"Имя репозитория"
+        help_text = (u"Введите название репозитория, который будет создан на GitHub",)
+        return render_to_response("form.html", {
+            'tit':tit,
+            'form':form,
+            'help_text':help_text,
+            }, context_instance=RequestContext(request))
     else:
         raise Http404
-    return HttpResponseRedirect('/')
 
 @login_required
 def specmsg_decline(request, message_id, template_name='messages/reply_spec.html'):
@@ -645,7 +690,7 @@ def schedule(request, year=None, month=None):
 
     event_list = []
     event_month = Event.objects.filter(date_and_time__gte = (datetime.datetime(year,month,1,0,0))).filter(date_and_time__lte=(datetime.datetime(year,month,last_day,23,59)))
-    stage_month = Stage.objects.filter(date_and_time__gte = (datetime.datetime(year,month,1,0,0))).filter(date_and_time__lte=(datetime.datetime(year,month,last_day,23,59)))
+    #stage_month = Stage.objects.filter(date_and_time__gte = (datetime.datetime(year,month,1,0,0))).filter(date_and_time__lte=(datetime.datetime(year,month,last_day,23,59)))
 
     try:
         if user.student:
@@ -1091,6 +1136,7 @@ def diplomniks(request):
     return render_to_response('diplomniks.html', {'diplomniks':diplomniks},
         context_instance=RequestContext(request))
 
+"""
 @login_required
 def set_scores(request):
     user = request.user
@@ -1123,6 +1169,7 @@ def set_scores(request):
         'score_forms':score_forms,
         },
         context_instance=RequestContext(request))
+"""
 
 @login_required
 def git(request):
@@ -1280,3 +1327,33 @@ def messages_compose_choose(request, recipients=None):
         'tit':tit,
         'form':form,
         }, context_instance=RequestContext(request))
+
+@login_required
+def stage_add(request):
+    user = request.user
+    get_object_or_404(Teacher, user=user)
+
+    form = StageAdd(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect('/')
+
+    tit = u'Добавить этап'
+    return render_to_response('form.html', {
+        'tit':tit,
+        'form':form,
+        }, context_instance=RequestContext(request))
+
+@login_required
+def stage_pass(request, user_id, stagepass_id):
+    user = request.user
+    teacher = get_object_or_404(Teacher, user=user)
+    user_st = get_object_or_404(User, id=user_id)
+    student = get_object_or_404(Student, user=user_st)
+    stagepass = get_object_or_404(StagePass, id=stagepass_id)
+
+    if student.theme.teacher == teacher:
+        stagepass.stage_pass = True
+        stagepass.save()
+
+    return HttpResponseRedirect('/accounts/profile/%s/' % user_id)

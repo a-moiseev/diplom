@@ -63,11 +63,14 @@ urlpatterns = patterns('',
 
     url(r'^diplomniks/$', 'diplom.project2.views.diplomniks'),
 
-    url(r'^scores/$', 'diplom.project2.views.set_scores'),
+    #url(r'^scores/$', 'diplom.project2.views.set_scores'),
 
     url(r'^git/$', 'diplom.project2.views.git'),
     url(r'^git/data/$', 'diplom.project2.views.git_data_add'),
     url(r'^git/changepassword/$', 'diplom.project2.views.git_change_psw'),
+
+    url(r'^stage/add/$', 'diplom.project2.views.stage_add'),
+    url(r'^stage/(?P<user_id>\d+)/(?P<stagepass_id>\d+)/pass/$', 'diplom.project2.views.stage_pass', name='stage_pass'),
 
     url(r'^chat/', include('bbb.urls')),
 
