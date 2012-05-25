@@ -2,23 +2,62 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97d9bba6-e9f5-4df6-833d-6d751d4b7799" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/project2/composeform.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/base.html.old" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/base0.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/event_view.html.old" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/vktest.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/vktest1.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/.svn/all-wcprops" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/.svn/entries" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/.svn/text-base/__init__.py.svn-base" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/.svn/text-base/admin.py.svn-base" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/.svn/text-base/models.py.svn-base" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/.svn/text-base/tests.py.svn-base" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/.svn/text-base/urls.py.svn-base" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/.svn/text-base/views.py.svn-base" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/.svn/tmp/tests.py.tmp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/.svn/tmp/views.py.2.tmp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/.svn/tmp/views.py.tmp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/admin.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/fixtures/.svn/all-wcprops" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/fixtures/.svn/entries" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/fixtures/.svn/text-base/test_jqchat.json.svn-base" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/fixtures/test_jqchat.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/models.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/static/.svn/all-wcprops" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/static/.svn/entries" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/static/.svn/text-base/jqchat.js.svn-base" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/static/jqchat.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/.svn/all-wcprops" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/.svn/entries" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/admin/.svn/all-wcprops" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/admin/.svn/entries" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/admin/jqchat/.svn/all-wcprops" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/admin/jqchat/.svn/entries" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/admin/jqchat/room/.svn/all-wcprops" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/admin/jqchat/room/.svn/entries" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/admin/jqchat/room/.svn/text-base/change_form.html.svn-base" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/admin/jqchat/room/change_form.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/jqchat/.svn/all-wcprops" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/jqchat/.svn/entries" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/jqchat/.svn/text-base/chat_payload.json.svn-base" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/jqchat/.svn/text-base/chat_test.html.svn-base" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/jqchat/.svn/text-base/chat_test_with_desc.html.svn-base" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/jqchat/chat_payload.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/jqchat/chat_test.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/jqchat/chat_test_with_desc.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/tests.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/urls.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/views.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/chatrooms/base.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/chatrooms/base.html.old" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/chatrooms/guestname_form.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/chatrooms/room.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/chatrooms/rooms_list.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/odtshabl/content.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/odtshabl/otziv.odt.bcp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/odtshabl/recenziya.odt.bcp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/odtshabl/zadanie_na_vipusknuyu_rabotu.odt.bcp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/odtshabl/zayavlenie_na_vipusknuyu_rabotu.odt.bcp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/registration/profile.html.old" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbb/urls.py" afterPath="$PROJECT_DIR$/bbb/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project2/forms.py" afterPath="$PROJECT_DIR$/project2/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project2/models.py" afterPath="$PROJECT_DIR$/project2/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project2/views.py" afterPath="$PROJECT_DIR$/project2/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.py" afterPath="$PROJECT_DIR$/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/base.html" afterPath="$PROJECT_DIR$/templates/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/registration/profile.html" afterPath="$PROJECT_DIR$/templates/registration/profile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/urls.py" afterPath="$PROJECT_DIR$/urls.py" />
     </list>
     <ignored path="diplom.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,7 +82,7 @@
       <file leaf-file-name="settings.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="189" column="0" selection-start="6186" selection-end="6186" vertical-scroll-proportion="0.24511546">
+            <state line="188" column="0" selection-start="6181" selection-end="6181" vertical-scroll-proportion="0.21492007">
               <folding />
             </state>
           </provider>
@@ -229,57 +268,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="registration" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="diplom" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="diplom" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="diplom" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="diplom" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="bbb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="diplom" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="diplom" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bbb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -360,6 +349,24 @@
       <option name="customRunCommand" value="" />
       <method />
     </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <module name="diplom" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method />
+    </configuration>
     <configuration default="false" name="diplom" type="Python.DjangoServer" factoryName="Django server">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -420,7 +427,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27465856" sideWeight="0.67045456" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4279211" sideWeight="0.67045456" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -543,7 +550,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="189" column="0" selection-start="6186" selection-end="6186" vertical-scroll-proportion="0.24511546">
+        <state line="188" column="0" selection-start="6181" selection-end="6181" vertical-scroll-proportion="0.21492007">
           <folding />
         </state>
       </provider>

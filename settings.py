@@ -186,7 +186,6 @@ EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False
 DEFAULT_FROM_EMAIL = 'info@google.ru'
 
-#bbb
 
 
 AUTHENTICATION_BACKENDS = (
@@ -197,9 +196,6 @@ AUTHENTICATION_BACKENDS = (
 
 #мои глобальные
 TIME_FOR_ST = 30 # минут на одного студента при записи на встречу
-DECANAT_EMAIL = {
-    'dekanat@localhost.local',
-     } #на эти майлы отправляются ведомости
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
