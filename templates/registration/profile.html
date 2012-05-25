@@ -18,6 +18,19 @@
         {% endif %}
     {% endif %}
 
+
+    {% if prof.theme %}
+        {% if prof.theme.teacher == user.teacher or user == prof.user %}
+            <p>E-mail: <a href="mailto:{{ prof.user.email }}">{{ prof.user.email }}</a></p>
+            {% if prof.phone %}
+                <p>Номер телефона: {{ prof.phone }}</p>
+            {% endif %}
+            <p>Направление: {{ prof.specialization }}</p>
+            <p>Защита: {{ prof.month }} {{ prof.year }}</p>
+        {% endif %}
+    {% endif %}
+
+
     {% if prof.theme %}
         {# если студент и есть тема #}
         <p>Тема: <a href="/theme/{{prof.theme.id}}/">{{prof.theme}}</a></p>

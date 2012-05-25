@@ -17,7 +17,7 @@
 	{% if user.is_authenticated %}
 		{{ user.username }} |
 		<strong>{{ user.get_full_name }}</strong> | 
-		<a href="/accounts/profile/">Профайл</a> | 
+		<a href="/accounts/profile/">Профиль</a> | 
 		<a href="/accounts/logout/">Выход</a>
 	{% else %}
 		<a href="/accounts/register/">Регистрация</a> | 

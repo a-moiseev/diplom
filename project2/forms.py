@@ -40,9 +40,13 @@ class StudentProfileForm(forms.Form):
         (6, '6'),
     }
     semestr = forms.ChoiceField(choices = SEMESTR_CHOICES, label=u'Семестр')
-    specialization = forms.ModelChoiceField(queryset = Specialization.objects.all(), label=u'Специализация (направление)')
+    specialization = forms.ModelChoiceField(queryset = Specialization.objects.all(),
+        label=u'Специализация (направление)')
 
-    phone = forms.RegexField(regex=r'[\d\(\)\-\+]', widget=forms.TextInput, required=False, max_length=20, label=u'Телефон')
+    phone = forms.RegexField(regex=r'[\d\(\)\-\+]', widget=forms.TextInput,
+        required=False,
+        max_length=20,
+        label=u'Телефон')
 
 class StudentYearMonthForm(forms.Form):
     MONTH_CHOICES = (
@@ -62,15 +66,20 @@ class StudentRequestForm(forms.Form):
         for t in theme_data:
             label = t.name
             help_text = t.id
-            self.fields['the_%s' % t.id] = forms.BooleanField(label=label, help_text = help_text, required=False)
+            self.fields['the_%s' % t.id] = forms.BooleanField(label=label,
+                help_text = help_text,
+                required=False)
             
 class StudentSpecialMessageForm(forms.Form):
-    comments = forms.CharField(widget=forms.Textarea(attrs={'cols': 70, 'rows': 20}), label=u'Текст сообщения', required=False)
+    comments = forms.CharField(widget=forms.Textarea(attrs={'cols': 70, 'rows': 20}),
+        label=u'Текст сообщения', required=False)
 
 
 class ReplySpecialMessageForm(forms.Form):
     theme = forms.ModelChoiceField(queryset = Theme.objects.none, label=u'Тема')
-    comments = forms.CharField(widget=forms.Textarea(attrs={'cols': 70, 'rows': 20}), label=u'Текст сообщения', required=False)
+    comments = forms.CharField(widget=forms.Textarea(attrs={'cols': 70, 'rows': 20}),
+        label=u'Текст сообщения', required=False)
+
     def __init__(self, theme_data, *args, **kwargs):
         super(ReplySpecialMessageForm, self).__init__(*args, **kwargs)
         self.fields['theme'].queryset = theme_data

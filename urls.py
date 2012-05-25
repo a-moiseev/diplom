@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django.conf.urls.defaults import patterns, include, url
-from registration.forms import RegistrationFormUniqueEmail
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
@@ -39,12 +38,10 @@ urlpatterns = patterns('',
     url(r'^messages/delete/(?P<message_id>[\d]+)/spec/$', 'diplom.project2.views.specmsg_decline'),
 
     url(r'^messages/compose/choose/$', 'diplom.project2.views.messages_compose_choose'),
-    url(r'^messages/compose/choose/(?P<recipients>[\w]+)/$', 'diplom.project2.views.messages_compose_choose'),
+    url(r'^messages/compose/choose/(?P<recipients>[\w]+)/$',
+        'diplom.project2.views.messages_compose_choose'),
     url(r'^messages/', include('messages.urls')),
-    
-    #url(r'^chat/', include('jqchat.urls')),
-    #url(r'^chat/', include('chatrooms.urls')),
-    
+
     url(r'^schedule/$', 'diplom.project2.views.schedule'),
     url(r'^schedule/(?P<year>\d+)/(?P<month>\d+)/$', 'diplom.project2.views.schedule'), # year - 4 цифры!!!
     url(r'^event/add/$', 'diplom.project2.views.event_add'),
@@ -52,7 +49,8 @@ urlpatterns = patterns('',
     url(r'^event/(?P<event_id>\d+)/join/$', 'diplom.project2.views.event_join'),
     url(r'^event/(?P<event_id>\d+)/addstudent/$', 'diplom.project2.views.event_add_student'),
     url(r'^event/(?P<event_id>\d+)/addstudent/all/$', 'diplom.project2.views.event_add_students_all'),
-    url(r'^event/(?P<event_id>\d+)/addstudent/diplomniks/$', 'diplom.project2.views.event_add_students_diplomniks'),
+    url(r'^event/(?P<event_id>\d+)/addstudent/diplomniks/$',
+        'diplom.project2.views.event_add_students_diplomniks'),
     url(r'^superevent/add/$', 'diplom.project2.views.super_event_add'),
 
     url(r'^docs/$', 'diplom.project2.views.docs'),
@@ -63,14 +61,13 @@ urlpatterns = patterns('',
 
     url(r'^diplomniks/$', 'diplom.project2.views.diplomniks'),
 
-    #url(r'^scores/$', 'diplom.project2.views.set_scores'),
-
     url(r'^git/$', 'diplom.project2.views.git'),
     url(r'^git/data/$', 'diplom.project2.views.git_data_add'),
     url(r'^git/changepassword/$', 'diplom.project2.views.git_change_psw'),
 
     url(r'^stage/add/$', 'diplom.project2.views.stage_add'),
-    url(r'^stage/(?P<user_id>\d+)/(?P<stagepass_id>\d+)/pass/$', 'diplom.project2.views.stage_pass', name='stage_pass'),
+    url(r'^stage/(?P<user_id>\d+)/(?P<stagepass_id>\d+)/pass/$',
+        'diplom.project2.views.stage_pass', name='stage_pass'),
 
     url(r'^chat/', include('bbb.urls')),
 

@@ -38,7 +38,8 @@ class Secretary(models.Model):
 class Theme(models.Model):
     teacher = models.ForeignKey(Teacher)
     name = models.CharField(max_length=100, unique=True, verbose_name=u'Название')
-    comments = models.TextField(blank=True, verbose_name=u'Комментарии') #комментарии для студента для выбора темы
+    #комментарии для студента для выбора темы
+    comments = models.TextField(blank=True, verbose_name=u'Комментарии')
 
     #исходные данные к работе и консультанты (для документации)
     initial_data = models.TextField(verbose_name=u'Исходные данные (для документации)')
@@ -134,14 +135,19 @@ class Event(models.Model):
     date_and_time = models.DateTimeField(verbose_name=u'Дата и время начала') #начало
     #date = models.DateField()
     #starttime = models.TimeField()
-    endtime = models.TimeField(null=True, blank=True, verbose_name=u'Конец встречи (время)') #конец встречи
+    endtime = models.TimeField(null=True,
+        blank=True,
+        verbose_name=u'Конец встречи (время)') #конец встречи
     
     teacher = models.ForeignKey(Teacher, null=True, blank=True) #защита/предзащита =null
 
     meeting = models.ForeignKey(Meeting, null=True, blank=True)
 
     #для защиты, предзащиты ...
-    specialization = models.ForeignKey(Specialization, blank=True, null=True, verbose_name=u'Направление')
+    specialization = models.ForeignKey(Specialization,
+        blank=True,
+        null=True,
+        verbose_name=u'Направление')
 
     def __unicode__(self):
         return u'%s. %s' % (self.series.primary_name, self.date_and_time.__str__())
@@ -180,7 +186,10 @@ class Stage(models.Model):
     name = models.ForeignKey(StageName, verbose_name=u'Этап')
     date = models.DateTimeField(verbose_name=u'Дата')
 
-    specialization = models.ForeignKey(Specialization, blank=True, null=True, verbose_name=u'Направление')
+    specialization = models.ForeignKey(Specialization,
+        blank=True,
+        null=True,
+        verbose_name=u'Направление')
 
     def __unicode__(self):
         return u'%s. %s' % (self.name.__unicode__(), self.date.strftime('%d.%m.%Y'))

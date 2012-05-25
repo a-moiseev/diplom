@@ -2,9 +2,9 @@
 
 import datetime
 import calendar as pycalendar
-from django.contrib.auth import REDIRECT_FIELD_NAME, BACKEND_SESSION_KEY
+from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.shortcuts import render_to_response, get_object_or_404
-from django.template import RequestContext, Context, Template
+from django.template import RequestContext
 from django.http import Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
@@ -21,36 +21,7 @@ from webodt import shortcuts
 
 from pygithub3 import Github
 
-from settings import TIME_FOR_ST, DECANAT_EMAIL
-
-from social_auth.models import UserSocialAuth
-
-"""
-# Checks the completeness of current user authentication; complete = logged via VKontakte backend
-def is_complete_authentication(request):
-    return request.user.is_authenticated() and VKontakteOAuth2Backend.__name__ in request.session.get(BACKEND_SESSION_KEY, '')
-
-def vkontakte_intro(func):
-    def wrapper(request, *args, **kwargs):
-
-        # User must me logged via VKontakte backend in order to ensure we talk about the same person
-        if not is_complete_authentication(request):
-            try:
-
-                social_complete(request, VKontakteOAuth2Backend.name)
-            except (ValueError, AttributeError):
-                pass
-
-        # Need to re-check the completion
-        if is_complete_authentication(request):
-            kwargs.update({'access_token': get_access_token(request.user)})
-        else:
-            request.user = AnonymousUser()
-
-        return func(request, *args, **kwargs)
-
-    return wrapper
-"""
+from settings import TIME_FOR_ST
 
 def github_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url='/git/data/'):
     """
@@ -178,19 +149,19 @@ def get_profile(request, user_id = None):
                     student.semestr = f.cleaned_data["semestr"]
                     student.specialization = f.cleaned_data["specialization"]
                     student.sex = f.cleaned_data["sex"]
-                    #student.month = f.cleaned_data["month"]
-                    #student.year = f.cleaned_data["year"]
 
                     student.save()
 
                     prof = get_us_profile(user)
 
-                    return render_to_response('registration/profile.html', {'prof':prof},
-                                              context_instance=RequestContext(request))
+                    return render_to_response('registration/profile.html',
+                            {'prof':prof},
+                            context_instance=RequestContext(request))
 
             f = StudentProfileForm()
-            return render_to_response('registration/create_student_profile.html', {'form':f},
-                              context_instance=RequestContext(request))
+            return render_to_response('registration/create_student_profile.html',
+                    {'form':f},
+                    context_instance=RequestContext(request))
 
     stages = get_stages(user)
 
@@ -214,13 +185,17 @@ def theme_add(request):
         teacher = Theme(teacher = prof)
         f = ThemeForm(request.POST, instance=teacher)
         if not f.is_valid():
-            return render_to_response('theme_add.html', {'form':f}, context_instance=RequestContext(request))
+            return render_to_response('theme_add.html',
+                    {'form':f},
+                    context_instance=RequestContext(request))
         else:
             f.save()
             return HttpResponseRedirect(reverse('diplom.project2.views.get_profile'))
 
     f = ThemeForm()
-    return render_to_response('theme_add.html', {'form':f}, context_instance=RequestContext(request))
+    return render_to_response('theme_add.html',
+            {'form':f},
+            context_instance=RequestContext(request))
 
 @login_required
 def theme_edit(request, theme_id):
@@ -238,13 +213,17 @@ def theme_edit(request, theme_id):
     if request.method == "POST":
         f = ThemeForm(request.POST, instance=theme)
         if not f.is_valid():
-            return render_to_response('theme_add.html', {'form':f}, context_instance=RequestContext(request))
+            return render_to_response('theme_add.html',
+                    {'form':f},
+                    context_instance=RequestContext(request))
         else:
             f.save()
             return HttpResponseRedirect(reverse('diplom.project2.views.get_profile'))
 
     f = ThemeForm(instance = theme)
-    return render_to_response('theme_add.html', {'form':f}, context_instance=RequestContext(request))
+    return render_to_response('theme_add.html',
+            {'form':f},
+            context_instance=RequestContext(request))
 
 @login_required
 def theme_view(request, theme_id):
@@ -253,7 +232,9 @@ def theme_view(request, theme_id):
     if student:
         student = student[0]
 
-    return render_to_response('theme_view.html', {'theme':theme, 'student':student,}, context_instance=RequestContext(request))
+    return render_to_response('theme_view.html',
+            {'theme':theme,'student':student,},
+            context_instance=RequestContext(request))
 
 @login_required
 def interest_add(request):
@@ -268,13 +249,17 @@ def interest_add(request):
         teacher = Interest(teacher = prof)
         f = InterestForm(request.POST, instance = teacher)
         if not f.is_valid():
-            return render_to_response('interest_add.html', {'form':f}, context_instance=RequestContext(request))
+            return render_to_response('interest_add.html',
+                    {'form':f},
+                    context_instance=RequestContext(request))
         else:
             f.save()
             return HttpResponseRedirect(reverse('diplom.project2.views.get_profile'))
 
     f = InterestForm()
-    return render_to_response('interest_add.html', {'form':f}, context_instance=RequestContext(request))
+    return render_to_response('interest_add.html',
+            {'form':f},
+            context_instance=RequestContext(request))
 
 @login_required
 def teachers(request):
@@ -391,7 +376,9 @@ def teachers_send_request(request, user_id):
             if not body:
                 body = ' '
 
-            msg = Message(subject = u'Запрос', recipient = teacher.user, sender = user, body = body)
+            msg = Message(subject = u'Запрос',
+                recipient = teacher.user,
+                sender = user, body = body)
 
             msg.save()
 
@@ -483,7 +470,10 @@ def specmsg_reply(request, message_id, template_name='messages/reply_spec.html')
                 body = ' '
             theme = form.cleaned_data['theme']
 
-            msg = Message(subject = u'Тема', recipient = parent.sender, sender = user, body = body)
+            msg = Message(subject = u'Тема',
+                recipient = parent.sender,
+                sender = user,
+                body = body)
 
             msg.save()
 
@@ -572,7 +562,10 @@ def specmsg_decline(request, message_id, template_name='messages/reply_spec.html
                 if not body:
                     body = ' '
 
-                msg = Message(subject = u'Тема отклонена', recipient = parent.sender, sender = user, body = body)
+                msg = Message(subject = u'Тема отклонена',
+                    recipient = parent.sender,
+                    sender = user,
+                    body = body)
                 msg.save()
 
                 spec_msg = Special_message()
@@ -626,8 +619,9 @@ def calendar(request, year, month, series_id=None):
     my_calendar_from_month = datetime(my_year, my_month, 1)
     my_calendar_to_month = datetime(my_year, my_month, monthrange(my_year, my_month)[1])
 
-    my_events = Event.objects.filter(date_and_time__gte=my_calendar_from_month).filter(date_and_time__lte=my_calendar_to_month)
-    #my_events += Stage.objects.filter(date_and_time__gte=my_calendar_from_month).filter(date_and_time__lte=my_calendar_to_month)
+    my_events = Event.objects.filter(date_and_time__gte=my_calendar_from_month).\
+        filter(date_and_time__lte=my_calendar_to_month)
+
     if series_id:
         my_events = my_events.filter(series=series_id)
 
@@ -644,19 +638,22 @@ def calendar(request, year, month, series_id=None):
         my_next_month = 1
     my_year_after_this = my_year + 1
     my_year_before_this = my_year - 1
-    return render_to_response("cal_template.html", { 'events_list': my_events,
-                                                        'month': my_month,
-                                                        'month_name': named_month(my_month),
-                                                        'year': my_year,
-                                                        'previous_month': my_previous_month,
-                                                        'previous_month_name': named_month(my_previous_month),
-                                                        'previous_year': my_previous_year,
-                                                        'next_month': my_next_month,
-                                                        'next_month_name': named_month(my_next_month),
-                                                        'next_year': my_next_year,
-                                                        'year_before_this': my_year_before_this,
-                                                        'year_after_this': my_year_after_this,
-    }, context_instance=RequestContext(request))
+    return render_to_response("cal_template.html",
+            {
+            'events_list': my_events,
+            'month': my_month,
+            'month_name': named_month(my_month),
+            'year': my_year,
+            'previous_month': my_previous_month,
+            'previous_month_name': named_month(my_previous_month),
+            'previous_year': my_previous_year,
+            'next_month': my_next_month,
+            'next_month_name': named_month(my_next_month),
+            'next_year': my_next_year,
+            'year_before_this': my_year_before_this,
+            'year_after_this': my_year_after_this,
+            },
+            context_instance=RequestContext(request))
 """
 END CALENDAR
 """
@@ -689,8 +686,8 @@ def schedule(request, year=None, month=None):
     last_day = pycalendar.monthrange(year, month)[1]
 
     event_list = []
-    event_month = Event.objects.filter(date_and_time__gte = (datetime.datetime(year,month,1,0,0))).filter(date_and_time__lte=(datetime.datetime(year,month,last_day,23,59)))
-    #stage_month = Stage.objects.filter(date_and_time__gte = (datetime.datetime(year,month,1,0,0))).filter(date_and_time__lte=(datetime.datetime(year,month,last_day,23,59)))
+    event_month = Event.objects.filter(date_and_time__gte = (datetime.datetime(year,month,1,0,0))).\
+        filter(date_and_time__lte=(datetime.datetime(year,month,last_day,23,59)))
 
     try:
         if user.student:
@@ -706,7 +703,8 @@ def schedule(request, year=None, month=None):
                 if es:
                     event_list.append(evl)
             # + встречи без учителей, своего направления
-            event_list += list(event_month.filter(specialization=user.student.specialization).exclude(student = user.student))
+            event_list += list(event_month.filter(specialization=user.student.specialization).\
+                exclude(student = user.student))
 
             event_list += list(stage_month)
     except:
@@ -737,14 +735,6 @@ def event_view(request, event_id):
 
     event_students = event.eventstudent_set.all()
 
-    """
-    event_students_time = []
-    if event_students:
-        for k in range(event_students.__len__()):
-            est = [event_students.get(number=k), (event.date_and_time + datetime.timedelta(minutes=(TIME_FOR_ST*k)))]
-            event_students_time.append(est)
-    """
-
     event_errors=[]
     try:
         event_errors = request.session['event_join_error']
@@ -756,7 +746,6 @@ def event_view(request, event_id):
         "errors":event_errors,
         "event":event,
         "event_students":event_students,
-        #"event_students_time":event_students_time,
         }, context_instance=RequestContext(request))
 
 @login_required
@@ -776,7 +765,9 @@ def event_join(request, event_id):
         return HttpResponseRedirect('/event/%s/' % event.id)
 
     num = event.eventstudent_set.count()
-    if (event.date_and_time + datetime.timedelta(minutes=(TIME_FOR_ST*num))).time() > event.endtime:
+    if event.endtime and ((event.date_and_time + \
+                          datetime.timedelta(minutes=(TIME_FOR_ST*num))).\
+                          time() > event.endtime):
         request.session['event_join_error'] = u'Всё уже занято!'
         return HttpResponseRedirect('/event/%s/' % event.id)
 
@@ -837,38 +828,6 @@ def super_event_add(request):
         'form':form,
         }, context_instance=RequestContext(request))
 
-"""
-@login_required
-def event_add_student(request, event_id):
-    #преподаватель добавляет студента к встрече
-    #для очной встречи или встречи в чате
-
-    event = get_object_or_404(Event, id=int(event_id))
-
-    user = request.user
-    #только тичер
-    prof = get_object_or_404(Teacher, user = user)
-
-    if request.method == "POST":
-        event_num = EventStudent(
-            event=event,
-            date=event.date_and_time.date(),
-            time=event.date_and_time.time(),
-            )
-        form = EventAddStudentForm(request.POST, instance = event_num)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/schedule/')
-    else:
-        form = EventAddStudentForm()
-
-    tit = u'Назначить встречу студенту'
-
-    return render_to_response('form.html', {
-        'tit':tit,
-        'form':form,
-        }, context_instance=RequestContext(request))
-"""
 @login_required
 def event_add_student(request, event_id):
     #преподаватель добавляет студента(ов) к встрече
@@ -1036,9 +995,11 @@ def docs_zayavlenie(request):
     for s in teacher.position.split():
         to_teacher_position += (morph.inflect_ru(s.upper(), u'вн,ед')).lower() + ' '
     if teacher.sex:
-        to_teacher_last_name = (lastnames_ru.inflect(morph, teacher.user.last_name.upper(), u'вн,ед,мр')).capitalize()
+        to_teacher_last_name = (lastnames_ru.inflect(morph, teacher.user.last_name.upper(), \
+            u'вн,ед,мр')).capitalize()
     else:
-        to_teacher_last_name = (lastnames_ru.inflect(morph, teacher.user.last_name.upper(), u'вн,ед,жр')).capitalize()
+        to_teacher_last_name = (lastnames_ru.inflect(morph, teacher.user.last_name.upper(), \
+            u'вн,ед,жр')).capitalize()
 
     context = dict(
         from_student_full_name=from_student_full_name,
@@ -1089,7 +1050,9 @@ def docs_otziv(request):
         theme = theme,
         teacher = teacher,
         on_work_type = on_work_type,
-        teacher_full_name = u'%s %s %s' % (teacher.user.last_name, teacher.user.first_name, teacher.middle_name),
+        teacher_full_name = u'%s %s %s' % (teacher.user.last_name,
+                                           teacher.user.first_name,
+                                           teacher.middle_name),
     )
 
     return shortcuts.render_to_response('otziv.odt', context)
@@ -1136,41 +1099,6 @@ def diplomniks(request):
     return render_to_response('diplomniks.html', {'diplomniks':diplomniks},
         context_instance=RequestContext(request))
 
-"""
-@login_required
-def set_scores(request):
-    user = request.user
-    teacher = get_object_or_404(Teacher, user=user)
-
-    teacher_students = list(Student.objects.filter(theme__in=(list(Theme.objects.filter(teacher=teacher)))))
-    stages = Stage.objects.filter(score__isnull=True).\
-        filter(student__in=teacher_students).\
-        filter(date__lte=(datetime.datetime.now().date())).order_by('name','date')
-
-    if request.method=="POST":
-        for stage in stages:
-            sform=ScoreForm(data=request.POST, prefix=stage.id)
-            if sform.is_valid():
-                stage.score=sform.cleaned_data['score']
-                stage.save()
-
-        return render_to_response('test2.html', {
-            'stages':stages,
-            },
-            context_instance=RequestContext(request))
-
-    score_forms=[]
-    for stage in stages:
-        sform=ScoreForm(prefix=stage.id)
-        sf = [stage, sform]
-        score_forms.append(sf)
-
-    return render_to_response('test.html', {
-        'score_forms':score_forms,
-        },
-        context_instance=RequestContext(request))
-"""
-
 @login_required
 def git(request):
     user = request.user
@@ -1189,7 +1117,6 @@ def git(request):
         'git_repos':gh_repos,
         },
         context_instance=RequestContext(request))
-
 
 @login_required
 def git_data_add(request):

@@ -21,7 +21,8 @@ urlpatterns = patterns('',
         name='join'),
     url('^meeting/(?P<meeting_id>[a-zA-Z0-9 _-]+)/(?P<password>.*)/delete$', delete_meeting,
         name='delete'),
-    url('^help.html$', 'django.views.generic.simple.redirect_to', {'url': 'http://www.bigbluebutton.org/content/videos',}, name='help'),
+    url('^help.html$', 'django.views.generic.simple.redirect_to',
+            {'url': 'http://www.bigbluebutton.org/content/videos',}, name='help'),
 )
 
 urlpatterns += staticfiles_urlpatterns()
