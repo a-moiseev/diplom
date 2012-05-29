@@ -13,13 +13,9 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        #'ENGINE': 'sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'dpr5',                      # Or path to database file if using sqlite3.
-        #'NAME': 'db',                      # Or path to database file if using sqlite3.
         'USER': 'dpr',                      # Not used with sqlite3.
-        #'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': 'H!67fdEE',                  # Not used with sqlite3.
-        #'PASSWORD': '',                  # Not used with sqlite3.
+        'PASSWORD': '***',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
@@ -186,7 +182,15 @@ EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False
 DEFAULT_FROM_EMAIL = 'info@google.ru'
 
+#bbb
+SALT = ""
+BBB_API_URL = "http://213.108.214.68/bigbluebutton/api/"
 
+#oauth2
+VK_APP_ID = ''
+VK_API_SECRET = ''
+GITHUB_APP_ID = ''
+GITHUB_API_SECRET = ''
 
 AUTHENTICATION_BACKENDS = (
     'social_auth.backends.contrib.github.GithubBackend',

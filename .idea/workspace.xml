@@ -2,60 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97d9bba6-e9f5-4df6-833d-6d751d4b7799" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/.svn/all-wcprops" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/.svn/entries" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/.svn/text-base/__init__.py.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/.svn/text-base/admin.py.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/.svn/text-base/models.py.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/.svn/text-base/tests.py.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/.svn/text-base/urls.py.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/.svn/text-base/views.py.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/.svn/tmp/tests.py.tmp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/.svn/tmp/views.py.2.tmp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/.svn/tmp/views.py.tmp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/admin.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/fixtures/.svn/all-wcprops" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/fixtures/.svn/entries" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/fixtures/.svn/text-base/test_jqchat.json.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/fixtures/test_jqchat.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/models.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/static/.svn/all-wcprops" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/static/.svn/entries" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/static/.svn/text-base/jqchat.js.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/static/jqchat.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/.svn/all-wcprops" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/.svn/entries" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/admin/.svn/all-wcprops" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/admin/.svn/entries" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/admin/jqchat/.svn/all-wcprops" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/admin/jqchat/.svn/entries" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/admin/jqchat/room/.svn/all-wcprops" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/admin/jqchat/room/.svn/entries" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/admin/jqchat/room/.svn/text-base/change_form.html.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/admin/jqchat/room/change_form.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/jqchat/.svn/all-wcprops" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/jqchat/.svn/entries" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/jqchat/.svn/text-base/chat_payload.json.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/jqchat/.svn/text-base/chat_test.html.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/jqchat/.svn/text-base/chat_test_with_desc.html.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/jqchat/chat_payload.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/jqchat/chat_test.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/templates/jqchat/chat_test_with_desc.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/tests.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/urls.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jqchat/views.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/chatrooms/base.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/chatrooms/base.html.old" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/chatrooms/guestname_form.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/chatrooms/room.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/chatrooms/rooms_list.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/odtshabl/content.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/odtshabl/otziv.odt.bcp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/odtshabl/recenziya.odt.bcp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/odtshabl/zadanie_na_vipusknuyu_rabotu.odt.bcp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/odtshabl/zayavlenie_na_vipusknuyu_rabotu.odt.bcp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/registration/profile.html.old" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/odtshabl/otziv.odt" afterPath="$PROJECT_DIR$/templates/odtshabl/otziv.odt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/odtshabl/recenziya.odt" afterPath="$PROJECT_DIR$/templates/odtshabl/recenziya.odt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.py" afterPath="$PROJECT_DIR$/settings.py" />
     </list>
@@ -82,7 +30,7 @@
       <file leaf-file-name="settings.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="188" column="0" selection-start="6181" selection-end="6181" vertical-scroll-proportion="0.21492007">
+            <state line="185" column="8" selection-start="5861" selection-end="5861" vertical-scroll-proportion="0.41385436">
               <folding />
             </state>
           </provider>
@@ -91,7 +39,7 @@
       <file leaf-file-name="create.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bbb/templates/create.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="0" selection-start="317" selection-end="317" vertical-scroll-proportion="-11.115385">
+            <state line="17" column="0" selection-start="317" selection-end="317" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -100,7 +48,7 @@
       <file leaf-file-name="profile.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/registration/profile.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="46" selection-start="882" selection-end="882" vertical-scroll-proportion="-0.65384614">
+            <state line="25" column="46" selection-start="882" selection-end="882" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -109,7 +57,7 @@
       <file leaf-file-name="meetings.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bbb/templates/meetings.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="16" selection-start="559" selection-end="559" vertical-scroll-proportion="-7.076923">
+            <state line="17" column="16" selection-start="559" selection-end="559" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -187,7 +135,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-1" />
     <option name="y" value="-5" />
-    <option name="width" value="1370" />
+    <option name="width" value="1026" />
     <option name="height" value="774" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -279,10 +227,10 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="recentsLimit" value="5" />
-    <property name="options.searchVisible" value="true" />
+    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -309,25 +257,6 @@
       <option name="MULTIPROCESS" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="tests" factoryName="Unittests">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <module name="diplom" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <method />
-    </configuration>
     <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -347,6 +276,25 @@
       <option name="runNoReload" value="false" />
       <option name="useCustomRunCommand" value="false" />
       <option name="customRunCommand" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <module name="diplom" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -420,7 +368,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="-5" width="1370" height="774" extended-state="6" />
+    <frame x="-1" y="-5" width="1026" height="774" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -502,6 +450,32 @@
         <state line="63" column="0" selection-start="3200" selection-end="3200" vertical-scroll-proportion="1.9023091" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/bbb/templates/create.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="0" selection-start="317" selection-end="317" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/registration/profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="46" selection-start="882" selection-end="882" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bbb/templates/meetings.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="16" selection-start="559" selection-end="559" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bbb/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="0" selection-start="1279" selection-end="1279" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/project2/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1273" column="15" selection-start="40857" selection-end="40857" vertical-scroll-proportion="0.0" />
@@ -517,40 +491,14 @@
         <state line="18" column="28" selection-start="534" selection-end="534" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bbb/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="0" selection-start="1279" selection-end="1279" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/project2/forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bbb/templates/meetings.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="16" selection-start="559" selection-end="559" vertical-scroll-proportion="-7.076923">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/registration/profile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="46" selection-start="882" selection-end="882" vertical-scroll-proportion="-0.65384614">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bbb/templates/create.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="317" selection-end="317" vertical-scroll-proportion="-11.115385">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="188" column="0" selection-start="6181" selection-end="6181" vertical-scroll-proportion="0.21492007">
+        <state line="185" column="8" selection-start="5861" selection-end="5861" vertical-scroll-proportion="0.41385436">
           <folding />
         </state>
       </provider>
